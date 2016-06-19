@@ -2,6 +2,7 @@
 
 /**
  * Class Database
+ * @property PDOStatement $statement
  */
 class Database extends PDO
 {

@@ -4,19 +4,17 @@ require_once("Model.php");
 require_once("ActiveRecord.php");
 
 /**
- * Class User
+ * Class File
  */
-class User extends ActiveRecord
+class File extends ActiveRecord
 {
-    public $role_id;
-    public $firstname;
-    public $lastname;
-    public $username;
-    public $email;
-    public $password;
-    public $auth_key;
-    public $active;
-    private static $table_name = "users";
+    public $added_by;
+    public $name;
+    public $original_name;
+    public $extension;
+    public $size;
+    public $tags;
+    private static $table_name = "files";
 
     /**
      * @return string
@@ -32,7 +30,7 @@ class User extends ActiveRecord
     public function __construct()
     {
         parent::__construct();
-        $this->setTableName(User::get_table_name());
+        $this->setTableName(File::get_table_name());
     }
 
     /**
@@ -40,7 +38,7 @@ class User extends ActiveRecord
      */
     public static function model()
     {
-        $model = new Model(User::$table_name, get_class(new User()));
+        $model = new Model(File::$table_name, get_class(new File()));
 
         return $model;
     }

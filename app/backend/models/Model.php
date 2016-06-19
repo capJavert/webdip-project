@@ -7,9 +7,57 @@ require_once("Database.php");
  */
 class Model
 {
-    public $database;
-    public $tableName;
-    public $className;
+    private $database;
+    private $tableName;
+    private $className;
+
+    /**
+     * @return mixed
+     */
+    public function getClassName()
+    {
+        return $this->className;
+    }
+
+    /**
+     * @param mixed $className
+     */
+    public function setClassName($className)
+    {
+        $this->className = $className;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTableName()
+    {
+        return $this->tableName;
+    }
+
+    /**
+     * @param mixed $tableName
+     */
+    public function setTableName($tableName)
+    {
+        $this->tableName = $tableName;
+    }
+
+    /**
+     * @return Database
+     */
+    public function getDatabase()
+    {
+        return $this->database;
+    }
+
+    /**
+     * @param Database $database
+     */
+    public function setDatabase($database)
+    {
+        $this->database = $database;
+    }
 
     /**
      * Model constructor.
@@ -29,7 +77,7 @@ class Model
 
     /**
      * Get all instances of model based on $criteria
-     * @param null $criteria
+     * @param Criteria $criteria
      * @return array
      */
     public function findAll($criteria=null) {

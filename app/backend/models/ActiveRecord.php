@@ -7,8 +7,40 @@
 class ActiveRecord
 {
     public $id;
-    public $database;
-    public $tableName;
+    private $database;
+    private $tableName;
+
+    /**
+     * @return Database
+     */
+    public function getDatabase()
+    {
+        return $this->database;
+    }
+
+    /**
+     * @param Database $database
+     */
+    public function setDatabase($database)
+    {
+        $this->database = $database;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTableName()
+    {
+        return $this->tableName;
+    }
+
+    /**
+     * @param mixed $tableName
+     */
+    public function setTableName($tableName)
+    {
+        $this->tableName = $tableName;
+    }
 
     /**
      * ActiveRecord constructor.
@@ -39,6 +71,12 @@ class ActiveRecord
 
         $sql = rtrim($sql, ",");
         $sql .= " WHERE id=$this->id;";
+
+        return $this->database->run($sql);
+    }
+
+    public function delete() {
+        $sql = "DELETE FROM $this->tableName WHERE id=$this->id;";
 
         return $this->database->run($sql);
     }

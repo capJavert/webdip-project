@@ -4,19 +4,15 @@ require_once("Model.php");
 require_once("ActiveRecord.php");
 
 /**
- * Class User
+ * Class CategoryUserAssigned
+ *
  */
-class User extends ActiveRecord
+class CategoryUserAssigned extends ActiveRecord
 {
-    public $role_id;
-    public $firstname;
-    public $lastname;
-    public $username;
-    public $email;
-    public $password;
-    public $auth_key;
-    public $active;
-    private static $table_name = "users";
+    public $user_id;
+    public $category_id;
+    public $date_added;
+    private static $table_name = "categories_users_assigned";
 
     /**
      * @return string
@@ -40,7 +36,7 @@ class User extends ActiveRecord
      */
     public static function model()
     {
-        $model = new Model(User::$table_name, get_class(new User()));
+        $model = new Model(CategoryUserAssigned::$table_name, get_class(new CategoryUserAssigned()));
 
         return $model;
     }

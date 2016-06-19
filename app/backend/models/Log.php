@@ -4,19 +4,14 @@ require_once("Model.php");
 require_once("ActiveRecord.php");
 
 /**
- * Class User
+ * Class Log
  */
-class User extends ActiveRecord
+class Log extends ActiveRecord
 {
-    public $role_id;
-    public $firstname;
-    public $lastname;
-    public $username;
-    public $email;
-    public $password;
-    public $auth_key;
-    public $active;
-    private static $table_name = "users";
+    public $date_added;
+    public $action;
+    public $user_id;
+    private static $table_name = "logs";
 
     /**
      * @return string
@@ -32,7 +27,7 @@ class User extends ActiveRecord
     public function __construct()
     {
         parent::__construct();
-        $this->setTableName(User::get_table_name());
+        $this->setTableName(Log::get_table_name());
     }
 
     /**
@@ -40,7 +35,7 @@ class User extends ActiveRecord
      */
     public static function model()
     {
-        $model = new Model(User::$table_name, get_class(new User()));
+        $model = new Model(Log::$table_name, get_class(new Log()));
 
         return $model;
     }
