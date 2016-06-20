@@ -1,8 +1,11 @@
 <?php
 
 require_once("models/User.php");
+require_once("includes/Router.php");
 require_once("includes/AccessControl.php");
 require_once("includes/Criteria.php");
+
+$config = require_once("config.php");
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
