@@ -5,7 +5,7 @@ angular.module('phoneApp', [
   'ngAnimate',
   'ngRoute',
   'core',
-  //'phoneDetail',
-  //'phoneList',
+  'deviceDetail',
+  'deviceList',
   'crud'
 ]);

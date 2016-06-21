@@ -7,17 +7,17 @@ config(['$locationProvider' ,'$routeProvider',
         $locationProvider.hashPrefix('!');
 
         $routeProvider.
-            when('/phones', {
-              template: '<phone-list></phone-list>'
+            when('/devices', {
+              template: '<device-list></device-list>'
             }).
             when('/crud/:modelName/:mId', {
                 template: '<crud></crud>'
             }).
             when('/login', {
               template: '<login></login>'
-            })/*.
-            when('/phones/:phoneId', {
-              template: '<phone-detail></phone-detail>'
-            })*/
+            }).
+            when('/devices/:deviceId', {
+              template: '<device-detail></device-detail>'
+            })
     }
 ]);
