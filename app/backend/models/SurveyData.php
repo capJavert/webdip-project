@@ -2,6 +2,8 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
+require_once "User.php";
+require_once "SurveyField.php";
 
 /**
  * Class SurveyData
@@ -48,11 +50,13 @@ class SurveyData extends ActiveRecord
         return array(
             'field_id' => array(
                 'type' => 'dropdown',
-                'label' => 'Naziv polja'
+                'label' => 'Naziv polja',
+                'data' => Helpers::prepareDropDown(SurveyField::model()->findAll(), 'id', 'name')
             ),
             'user_id' => array(
                 'type' => 'dropdown',
-                'label' => "Korisnik"
+                'label' => "Korisnik",
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'name')
             ),
             'data' => array(
                 'type' => 'text',

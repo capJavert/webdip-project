@@ -2,6 +2,8 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
+require_once "File.php";
+require_once "Device.php";
 
 /**
  * Class FileDeviceAssigned
@@ -48,11 +50,13 @@ class FileDeviceAssigned extends ActiveRecord
         return array(
             'file_id' => array(
                 'type' => 'dropdown',
-                'label' => 'Datoteka'
+                'label' => 'Datoteka',
+                'data' => Helpers::prepareDropDown(File::model()->findAll(), 'id', 'name')
             ),
             'device_id' => array(
                 'type' => 'dropdown',
-                'label' => "Uređaj"
+                'label' => "Uređaj",
+                'data' => Helpers::prepareDropDown(Device::model()->findAll(), 'id', 'name')
             ),
             'alt' => array(
                 'type' => 'text',

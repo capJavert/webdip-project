@@ -4,6 +4,7 @@ require_once("models/User.php");
 require_once("includes/Router.php");
 require_once("includes/AccessControl.php");
 require_once("includes/Criteria.php");
+require_once("includes/Helpers.php");
 
 $config = include("config.php");
 define("APP_ROUTE", $config['env']['basepath']);

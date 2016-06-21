@@ -1,12 +1,8 @@
 <?php
 require_once("header.php");
 
-if(!AccessControl::check(0, $user->role_id)) {
-    header("Location: /prijava");
-}
+//$test = Helpers::prepareDropDown(UserRole::model()->findAll(), 'id', 'name');
 
-$criteria = new Criteria();
-
-var_dump($user->role());
+//var_dump($test) or die;
 
 ?>

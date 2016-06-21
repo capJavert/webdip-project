@@ -2,6 +2,7 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
+require_once("Category.php");
 
 /**
  * Class Survey
@@ -58,7 +59,8 @@ class Survey extends ActiveRecord
             ),
             'category_id' => array(
                 'type' => 'dropdown',
-                'label' => "Kategorija"
+                'label' => "Kategorija",
+                'data' => Helpers::prepareDropDown(Category::model()->findAll(), 'id', 'name')
             ),
             'name' => array(
                 'type' => 'text',

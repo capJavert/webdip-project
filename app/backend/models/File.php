@@ -2,6 +2,7 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
+require_once "User.php";
 
 /**
  * Class File
@@ -51,7 +52,8 @@ class File extends ActiveRecord
         return array(
             'added_by' => array(
                 'type' => 'dropdown',
-                'label' => 'Autor'
+                'label' => 'Autor',
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'name')
             ),
             'name' => array(
                 'type' => 'text',

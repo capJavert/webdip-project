@@ -1,7 +1,9 @@
 <?php
 
-require_once("Model.php");
-require_once("ActiveRecord.php");
+require_once "Model.php";
+require_once "ActiveRecord.php";
+require_once "Device.php";
+require_once "DeviceStore.php";
 
 /**
  * Class DeviceStoreAssigned
@@ -48,11 +50,13 @@ class DeviceStoreAssigned extends ActiveRecord
         return array(
             'device_id' => array(
                 'type' => 'dropdown',
-                'label' => 'Uređaj'
+                'label' => 'Uređaj',
+                'data' => Helpers::prepareDropDown(Device::model()->findAll(), 'id', 'name')
             ),
             'store_id' => array(
                 'type' => 'dropdown',
-                'label' => "Trgovina"
+                'label' => "Trgovina",
+                'data' => Helpers::prepareDropDown(DeviceStore::model()->findAll(), 'id', 'name')
             ),
         );
     }

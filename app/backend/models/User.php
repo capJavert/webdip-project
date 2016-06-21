@@ -54,7 +54,8 @@ class User extends ActiveRecord
         return array(
             'role_id' => array(
                 'type' => 'dropdown',
-                'label' => 'Uloga'
+                'label' => 'Uloga',
+                'data' => Helpers::prepareDropDown(UserRole::model()->findAll(), 'id', 'name')
             ),
             'firstname' => array(
                 'type' => 'text',
@@ -73,7 +74,7 @@ class User extends ActiveRecord
                 'label' => 'Email'
             ),
             'password' => array(
-                'type' => 'text',
+                'type' => 'password',
                 'label' => 'Lozinka'
             ),
             'active' => array(

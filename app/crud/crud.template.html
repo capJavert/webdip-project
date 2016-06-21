@@ -1,1 +1,56 @@
-<h1>{{$ctrl.model.name}}</h1>
+<form name="myForm" class="form-horizontal" role="form" ng-submit="submitForm()">
+    <div ng-repeat="(key, field) in $ctrl.form">
+        <ng-form name="form">
+            <!-- TEXT FIELDS -->
+            <div ng-if="field.type=='text'" class="form-group">
+                <label class="col-sm-2 control-label">{{field.label}}</label>
+                <div class="col-sm-6">
+                    <input type="{{ field.type }}" dynamic-name="key" id="{{key}}" data-ng-model="field.data"  class="form-control" required/>
+                    <!--<span ng-show="myForm.{{key}}.$dirty && myForm.{{key}}.$error.required">Required!</span>.-->
+                    <span  data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
+                </div>
+            </div>
+
+            <!-- EMAIL FIELDS -->
+            <div ng-if="field.type=='email'" class="form-group">
+                <label class="col-sm-2 control-label">{{field.label}}</label>
+                <div class="col-sm-6">
+                    <input type="{{ field.type }}" dynamic-name="key" data-ng-model="field.data" class="form-control" required/>
+                    <span data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
+                    <span data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.email'}}">Not email!</span>
+                </div>
+            </div>
+
+            <!-- PASSWORD FIELDS -->
+            <div ng-if="field.type=='password'" class="form-group" >
+                <label class="col-sm-2 control-label">{{field.label}}</label>
+                <div class="col-sm-6">
+                    <input type="{{ field.type }}" dynamic-name="key" data-ng-model="field.data" ng-minlength={{field.min}} ng-maxlength={{field.max}} class="form-control" required/>
+                    <span data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
+                    <span data-ng-show=" {{'!form.'+key+'.required && (form.'+key+'.$error.minlength || form.'+key+'.$error.maxlength)' }}">Passwords must be between 8 and 20 characters.</span>
+                </div>
+            </div>
+
+            <!-- SELECT FIELDS -->
+            <div ng-if="field.type=='dropdown'" class="form-group" >
+                <label class="col-sm-2 control-label">{{field.label}}</label>
+                <div class="col-sm-6">
+                    <select data-ng-model="field.data" ng-options="option for option in field.data" class="form-control" required/>
+                </div>
+            </div>
+
+            <!-- CHECKBOX FIELDS -->
+            <div ng-if="field.type=='checkbox'" class="form-group" >
+                <label class="col-sm-2 control-label">{{field.label}}</label>
+                <div class="col-sm-6">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-ng-model="option.data"  name="taskGroup"  id="{{option.name}}" value="{{option.id}}" >
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </ng-form>
+    </div>
+</form>
