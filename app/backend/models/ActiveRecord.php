@@ -113,7 +113,7 @@ class ActiveRecord
      * @return array
      */
     public function attributes() {
-        $dbSchema = new PDO("mysql:dbname=information_schema;host=localhost", "root", "", array(
+        $dbSchema = new PDO("mysql:dbname=information_schema;host=".SERVER_NAME, USERNAME, PASSWORD, array(
             PDO::ATTR_EMULATE_PREPARES => false,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ));

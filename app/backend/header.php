@@ -8,6 +8,10 @@ require_once("includes/Helpers.php");
 
 $config = include("config.php");
 define("APP_ROUTE", $config['env']['basepath']);
+define("SERVER_NAME", $config['db']['serverName']);
+define("USERNAME", $config['db']['username']);
+define("PASSWORD", $config['db']['password']);
+define("DB_NAME", $config['db']['dbName']);
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

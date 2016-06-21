@@ -6,10 +6,10 @@
  */
 class Database extends PDO
 {
-    private $serverName = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $dbName = "webdip_project";
+    private $serverName = SERVER_NAME;
+    private $username = USERNAME;
+    private $password = PASSWORD;
+    private $dbName = DB_NAME;
     private $statement;
 
     /**
