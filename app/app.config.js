@@ -1,7 +1,7 @@
 'use strict';
 
 angular.
-module('phonecatApp').
+module('phoneApp').
 config(['$locationProvider' ,'$routeProvider',
     function config($locationProvider, $routeProvider) {
         $locationProvider.hashPrefix('!');

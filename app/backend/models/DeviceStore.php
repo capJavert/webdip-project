@@ -2,6 +2,7 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
+require_once "User.php";
 
 /**
  * Class DeviceStore
@@ -54,8 +55,9 @@ class DeviceStore extends ActiveRecord
     public static function formData() {
         return array(
             'created_by' => array(
-                'type' => 'text',
-                'label' => 'Autor'
+                'type' => 'dropdown',
+                'label' => 'Autor',
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'username')
             ),
             'name' => array(
                 'type' => 'text',

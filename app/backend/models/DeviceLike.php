@@ -51,7 +51,7 @@ class DeviceLike extends ActiveRecord
             'user_id' => array(
                 'type' => 'dropdown',
                 'label' => 'Korisnik',
-                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'name')
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'username')
             ),
             'device_id' => array(
                 'type' => 'dropdown',

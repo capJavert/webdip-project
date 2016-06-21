@@ -2,7 +2,7 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
-require_once "Device.php";
+require_once "User.php";
 
 /**
  * Class Log
@@ -54,7 +54,7 @@ class Log extends ActiveRecord
             'user_id' => array(
                 'type' => 'dropdown',
                 'label' => "Korisnik",
-                'data' => Helpers::prepareDropDown(Device::model()->findAll(), 'id', 'name')
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'username')
             ),
         );
     }

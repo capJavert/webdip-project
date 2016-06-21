@@ -56,7 +56,7 @@ class CategoryLike extends ActiveRecord
             'user_id' => array(
                 'type' => 'dropdown',
                 'label' => "Korisnik",
-                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'name')
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'username')
             )
         );
     }

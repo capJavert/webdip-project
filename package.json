@@ -2,7 +2,7 @@
   "name": "webdip-project",
   "private": false,
   "version": "0.0.1",
-  "description": "webdip@foi project",
+  "description": "webdip@foi",
   "repository": "https://github.com/capJavert/webdip-project",
   "license": "MIT",
   "devDependencies": {

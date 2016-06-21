@@ -1,7 +1,7 @@
 'use strict';
 
 angular.
-  module('phonecatApp').
+  module('phoneApp').
   animation('.phone', function phoneAnimationFactory() {
     return {
       addClass: animateIn,

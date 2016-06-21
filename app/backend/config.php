@@ -8,7 +8,8 @@ return array(
         "/logs" => "logs.php",
         "/surveys" => "surveys.php",
         "/users" => "users.php",
-        '/form' => "form.php"
+        '/form' => "form.php",
+        '/submit' => "submit.php"
     ),
     "db" => array(
         "serverName" => "localhost",

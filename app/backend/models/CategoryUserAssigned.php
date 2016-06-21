@@ -51,7 +51,7 @@ class CategoryUserAssigned extends ActiveRecord
             'user_id' => array(
                 'type' => 'text',
                 'label' => 'Korisnik',
-                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'name')
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'username')
             ),
             'category_id' => array(
                 'type' => 'dropdown',

@@ -2,6 +2,7 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
+require_once "User.php";
 
 /**
  * Class Category
@@ -51,7 +52,8 @@ class Category extends ActiveRecord
         return array(
             'created_by' => array(
                 'type' => 'text',
-                'label' => 'Autor'
+                'label' => 'Autor',
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'username')
             ),
             'root_id' => array(
                 'type' => 'dropdown',

@@ -3,6 +3,7 @@
 require_once("Model.php");
 require_once("ActiveRecord.php");
 require_once "Category.php";
+require_once "User.php";
 
 /**
  * Class Device
@@ -51,8 +52,9 @@ class Device extends ActiveRecord
     public static function formData() {
         return array(
             'created_by' => array(
-                'type' => 'text',
-                'label' => 'Autor'
+                'type' => 'dropdown',
+                'label' => 'Autor',
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'username')
             ),
             'category_id' => array(
                 'type' => 'dropdown',

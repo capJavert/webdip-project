@@ -1,8 +1,8 @@
 {
-  "name": "angular-phonecat",
-  "description": "A starter project for AngularJS",
+  "name": "webdip-project",
+  "description": "webdip@foi",
   "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-phonecat",
+  "homepage": "https://github.com/capJavert/webdip-project",
   "license": "MIT",
   "private": true,
   "dependencies": {

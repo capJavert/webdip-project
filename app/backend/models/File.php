@@ -53,7 +53,7 @@ class File extends ActiveRecord
             'added_by' => array(
                 'type' => 'dropdown',
                 'label' => 'Autor',
-                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'name')
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'username')
             ),
             'name' => array(
                 'type' => 'text',
