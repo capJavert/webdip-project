@@ -39,4 +39,25 @@ class FileDeviceAssigned extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'file_id' => array(
+                'type' => 'dropdown',
+                'label' => 'Datoteka'
+            ),
+            'device_id' => array(
+                'type' => 'dropdown',
+                'label' => "Uređaj"
+            ),
+            'alt' => array(
+                'type' => 'text',
+                'label' => 'Opis'
+            ),
+        );
+    }
 }

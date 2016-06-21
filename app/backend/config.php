@@ -2,7 +2,12 @@
 
 return array(
     "routes" => array(
-        "/devices" => "devices.php"
+        "/categories" => "categories.php",
+        "/devices" => "devices.php",
+        "/files" => "files.php",
+        "/logs" => "logs.php",
+        "/surveys" => "surveys.php",
+        "/users" => "users.php"
     ),
     "db" => array(
         "serverName" => "localhost",

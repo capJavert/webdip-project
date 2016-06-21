@@ -5,7 +5,8 @@ require_once("includes/Router.php");
 require_once("includes/AccessControl.php");
 require_once("includes/Criteria.php");
 
-$config = require_once("config.php");
+$config = include("config.php");
+define("APP_ROUTE", $config['env']['basepath']);
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

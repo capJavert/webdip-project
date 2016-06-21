@@ -45,4 +45,41 @@ class Survey extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'created_by' => array(
+                'type' => 'text',
+                'label' => 'Autor'
+            ),
+            'category_id' => array(
+                'type' => 'dropdown',
+                'label' => "Kategorija"
+            ),
+            'name' => array(
+                'type' => 'text',
+                'label' => 'Naziv'
+            ),
+            'visible' => array(
+                'type' => 'checkbox',
+                'label' => 'Prikaži'
+            ),
+            'date_start' => array(
+                'type' => 'date',
+                'label' => 'Datum do'
+            ),
+            'date_end' => array(
+                'type' => 'date',
+                'label' => 'Datum do'
+            ),
+            'date_visible' => array(
+                'type' => 'date',
+                'label' => 'Datum vidljivosti'
+            ),
+        );
+    }
 }

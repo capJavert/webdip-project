@@ -39,4 +39,25 @@ class UserRole extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'name' => array(
+                'type' => 'text',
+                'label' => 'Naziv'
+            ),
+            'rules' => array(
+                'type' => 'text',
+                'label' => 'Pravila'
+            ),
+            'superuser' => array(
+                'type' => 'checkbox',
+                'label' => 'Super korisnik'
+            )
+        );
+    }
 }

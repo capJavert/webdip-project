@@ -39,4 +39,21 @@ class CategoryLike extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'category_id' => array(
+                'type' => 'dropdown',
+                'label' => 'Kategorija'
+            ),
+            'user_id' => array(
+                'type' => 'dropdown',
+                'label' => "Korisnik"
+            )
+        );
+    }
 }

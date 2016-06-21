@@ -26,6 +26,7 @@ class Service
 
         switch($constant) {
             case "GET_BY_ID": $condition = "id=:CId";
+                break;
         }
 
         return $condition;
@@ -61,12 +62,20 @@ class Service
      * @return array|string
      */
     public function getData($json = false) {
+        $modelName = $this->model;
+
         if(new Criteria()!=$this->criteria) {
-            $data = Device::model()->findAll($this->criteria);
+            $data = $modelName::model()->findAll($this->criteria);
         } else {
-            $data = Device::model()->findAll();
+            $data = $modelName::model()->findAll();
         }
 
         return $json ? json_encode($data):$data;
+    }
+
+    public function getForm($json = false) {
+        $modelName = $this->model;
+
+        return $json ? json_encode($modelName::formData()):$modelName::formData();
     }
 }

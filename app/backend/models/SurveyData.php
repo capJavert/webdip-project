@@ -39,4 +39,25 @@ class SurveyData extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'field_id' => array(
+                'type' => 'dropdown',
+                'label' => 'Naziv polja'
+            ),
+            'user_id' => array(
+                'type' => 'dropdown',
+                'label' => "Korisnik"
+            ),
+            'data' => array(
+                'type' => 'text',
+                'label' => 'Odgovor'
+            )
+        );
+    }
 }

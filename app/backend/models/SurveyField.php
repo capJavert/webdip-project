@@ -45,4 +45,41 @@ class SurveyField extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'survey_id' => array(
+                'type' => 'dropdown',
+                'label' => 'Anketa'
+            ),
+            'name' => array(
+                'type' => 'text',
+                'label' => 'Naziv'
+            ),
+            'type' => array(
+                'type' => 'text',
+                'label' => "Tip"
+            ),
+            'label' => array(
+                'type' => 'text',
+                'label' => 'Oznaka'
+            ),
+            'size' => array(
+                'type' => 'text',
+                'label' => 'Broj znakova'
+            ),
+            'options' => array(
+                'type' => 'text',
+                'label' => 'Dodatno'
+            ),
+            'required' => array(
+                'type' => 'checkbox',
+                'label' => 'Required'
+            )
+        );
+    }
 }

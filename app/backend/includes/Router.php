@@ -1,5 +1,7 @@
 <?php
 
+require_once("../config.php");
+
 /**
  * Class Router
  *
@@ -15,7 +17,8 @@ class Router {
      * @return mixed
      */
     public static function parse() {
-        $referer = explode("/backend/services", $_SERVER['REQUEST_URI']);
+        $referer = explode(APP_ROUTE."backend/services", $_SERVER['REQUEST_URI']);
+        $referer = str_replace("/form", "", $referer);
         $route = explode("?", $referer[1]);
         self::$route = rtrim($route[0], "/");
 
@@ -58,5 +61,14 @@ class Router {
         }
 
         return self::$https;
+    }
+
+    public static function isGetForm() {
+        $referer = explode(APP_ROUTE."backend/services/form", $_SERVER['REQUEST_URI']);
+        if(count($referer)>1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

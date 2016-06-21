@@ -39,4 +39,21 @@ class Log extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'action' => array(
+                'type' => 'text',
+                'label' => 'Akcija'
+            ),
+            'user_id' => array(
+                'type' => 'dropdown',
+                'label' => "Korisnik"
+            ),
+        );
+    }
 }

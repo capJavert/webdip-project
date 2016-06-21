@@ -42,4 +42,37 @@ class File extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'added_by' => array(
+                'type' => 'dropdown',
+                'label' => 'Autor'
+            ),
+            'name' => array(
+                'type' => 'text',
+                'label' => "Ime"
+            ),
+            'original_name' => array(
+                'type' => 'text',
+                'label' => 'Izvorno ime'
+            ),
+            'extension' => array(
+                'type' => 'text',
+                'label' => 'ekstenzija'
+            ),
+            'size' => array(
+                'type' => 'text',
+                'label' => 'Veličina'
+            ),
+            'tags' => array(
+                'type' => 'text',
+                'label' => 'Oznake'
+            ),
+        );
+    }
 }

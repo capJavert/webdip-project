@@ -46,6 +46,43 @@ class User extends ActiveRecord
         return $model;
     }
 
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'role_id' => array(
+                'type' => 'dropdown',
+                'label' => 'Uloga'
+            ),
+            'firstname' => array(
+                'type' => 'text',
+                'label' => 'Ime'
+            ),
+            'lastname' => array(
+                'type' => 'text',
+                'label' => "Prezime"
+            ),
+            'username' => array(
+                'type' => 'text',
+                'label' => 'Korisničko ime'
+            ),
+            'email' => array(
+                'type' => 'email',
+                'label' => 'Email'
+            ),
+            'password' => array(
+                'type' => 'text',
+                'label' => 'Lozinka'
+            ),
+            'active' => array(
+                'type' => 'checkbox',
+                'label' => 'Aktiviran'
+            )
+        );
+    }
+
     public static function findByKey($key) {
         return self::getDatabase()->get("SELECT * FROM users WHERE auth_key=:key;", get_class(new User()), array(
             ':key' => $key
