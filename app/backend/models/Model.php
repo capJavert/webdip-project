@@ -82,11 +82,10 @@ class Model
      */
     public function findAll($criteria=null) {
         if($criteria) {
-            return $this->database->get("SELECT * FROM $this->tableName $criteria->join WHERE $criteria->condition;", $this->className, $criteria->params);
+            return $this->database->get("SELECT * FROM $this->tableName $criteria->join $criteria->condition $criteria->order;", $this->className, $criteria->params);
         } else {
             return $this->database->get("SELECT * FROM $this->tableName;", $this->className);
         }
-
     }
 
     /**

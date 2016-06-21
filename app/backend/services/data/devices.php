@@ -1,7 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: javert
- * Date: 20.06.16.
- * Time: 13:29
- */
+
+require_once(__DIR__."/../../models/Device.php");
+
+$service = new Service(get_class(new Device()), Router::params());
+
+$service->prepareData();
+$data = $service->getData(true);
+
+echo $data;
+
+?>
