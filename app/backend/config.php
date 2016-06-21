@@ -7,7 +7,8 @@ return array(
         "/files" => "files.php",
         "/logs" => "logs.php",
         "/surveys" => "surveys.php",
-        "/users" => "users.php"
+        "/users" => "users.php",
+        '/form' => "form.php"
     ),
     "db" => array(
         "serverName" => "localhost",

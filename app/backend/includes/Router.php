@@ -18,7 +18,7 @@ class Router {
      */
     public static function parse() {
         $referer = explode(APP_ROUTE."backend/services", $_SERVER['REQUEST_URI']);
-        $referer = str_replace("/form", "", $referer);
+        //$referer = str_replace("/form", "", $referer);
         $route = explode("?", $referer[1]);
         self::$route = rtrim($route[0], "/");
 
@@ -33,6 +33,16 @@ class Router {
         self::$params = $_GET;
 
         return self::$params;
+    }
+
+    /**
+     * @param $key
+     * @return string|null
+     */
+    public static function getParam($key) {
+        $params = self::params();
+
+        return array_key_exists($key, $params) ? $params[$key]:null;
     }
 
     /**

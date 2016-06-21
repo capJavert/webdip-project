@@ -39,4 +39,21 @@ class DeviceLike extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'user_id' => array(
+                'type' => 'dropdown',
+                'label' => 'Korisnik'
+            ),
+            'device_id' => array(
+                'type' => 'dropdown',
+                'label' => "Uređaj"
+            )
+        );
+    }
 }

@@ -46,4 +46,53 @@ class DeviceStore extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'created_by' => array(
+                'type' => 'text',
+                'label' => 'Autor'
+            ),
+            'name' => array(
+                'type' => 'text',
+                'label' => 'Naziv'
+            ),
+            'address' => array(
+                'type' => 'text',
+                'label' => 'Adresa'
+            ),
+            'postal_code' => array(
+                'type' => 'text',
+                'label' => 'Poštanski broj'
+            ),
+            'city' => array(
+                'type' => 'text',
+                'label' => 'Grad'
+            ),
+            'county' => array(
+                'type' => 'text',
+                'label' => 'Županija'
+            ),
+            'country' => array(
+                'type' => 'text',
+                'label' => 'Država'
+            ),
+            'phone' => array(
+                'type' => 'text',
+                'label' => 'Telefon'
+            ),
+            'longitude' => array(
+                'type' => 'text',
+                'label' => 'Longituda'
+            ),
+            'latitude' => array(
+                'type' => 'text',
+                'label' => 'Latituda'
+            ),
+        );
+    }
 }

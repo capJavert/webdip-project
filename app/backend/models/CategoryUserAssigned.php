@@ -40,4 +40,21 @@ class CategoryUserAssigned extends ActiveRecord
 
         return $model;
     }
+
+    /**
+     * Form data for model
+     * @return array
+     */
+    public static function formData() {
+        return array(
+            'user_id' => array(
+                'type' => 'text',
+                'label' => 'Korisnik'
+            ),
+            'category_id' => array(
+                'type' => 'dropdown',
+                'label' => "Kategorija"
+            )
+        );
+    }
 }
