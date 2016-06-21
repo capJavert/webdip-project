@@ -25,7 +25,7 @@ class Service
         $condition = "";
 
         switch($constant) {
-            case "GET_BY_ID": $condition = "id=:CId";
+            case "GET_BY_ID": $condition = "id=:id";
                 break;
         }
 
@@ -49,6 +49,8 @@ class Service
                 case 'limit': $this->criteria->setLimit($value);
                     break;
                 case 'params':
+                    $value = json_decode($value);
+
                     foreach($value as $name => $param) {
                         $this->criteria->addParam($name, $param);
                     }

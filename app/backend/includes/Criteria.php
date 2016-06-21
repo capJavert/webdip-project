@@ -51,6 +51,6 @@ class Criteria
     public function addParam($key, $value) {
         $value = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/', '', $value);
 
-        $params[$key] = $value;
+        $this->params[":$key"] = $value;
     }
 }

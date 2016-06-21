@@ -10,12 +10,14 @@ config(['$locationProvider' ,'$routeProvider',
             when('/phones', {
               template: '<phone-list></phone-list>'
             }).
+            when('/crud/:modelName/:mId', {
+                template: '<crud></crud>'
+            }).
             when('/login', {
               template: '<login></login>'
-            }).
+            })/*.
             when('/phones/:phoneId', {
               template: '<phone-detail></phone-detail>'
-            }).
-            otherwise('/phones');
+            })*/
     }
 ]);

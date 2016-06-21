@@ -64,7 +64,13 @@ class Database extends PDO
      */
     public function get($sql, $class, $params=array()) {
         $this->statement = $this->prepare($sql);
-        $this->params($params);
+
+        foreach($params as $key => $value) {
+            $this->statement->bindValue($key, $value);
+        }
+
+
+        //$this->statement->debugDumpParams();
 
         $this->statement->execute();
         $result = $this->statement->fetchAll(PDO::FETCH_CLASS, $class);
