@@ -5,7 +5,7 @@
             <div ng-if="field.type=='text'" class="form-group">
                 <label class="col-sm-2 control-label">{{field.label}}</label>
                 <div class="col-sm-6">
-                    <input type="{{ field.type }}" dynamic-name="key" id="{{key}}" data-ng-model="field.data"  class="form-control" required/>
+                    <input type="{{ field.type }}" dynamic-name="{{key}}" id="{{key}}" data-ng-model="field.value"  class="form-control" required/>
                     <!--<span ng-show="myForm.{{key}}.$dirty && myForm.{{key}}.$error.required">Required!</span>.-->
                     <span  data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
                 </div>
@@ -15,7 +15,7 @@
             <div ng-if="field.type=='email'" class="form-group">
                 <label class="col-sm-2 control-label">{{field.label}}</label>
                 <div class="col-sm-6">
-                    <input type="{{ field.type }}" dynamic-name="key" data-ng-model="field.data" class="form-control" required/>
+                    <input type="{{ field.type }}" dynamic-name="{{key}}" data-ng-model="field.value" class="form-control" required/>
                     <span data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
                     <span data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.email'}}">Not email!</span>
                 </div>
@@ -25,9 +25,19 @@
             <div ng-if="field.type=='password'" class="form-group" >
                 <label class="col-sm-2 control-label">{{field.label}}</label>
                 <div class="col-sm-6">
-                    <input type="{{ field.type }}" dynamic-name="key" data-ng-model="field.data" ng-minlength={{field.min}} ng-maxlength={{field.max}} class="form-control" required/>
+                    <input type="{{ field.type }}" dynamic-name="{{key}}" data-ng-model="field.value" ng-minlength={{field.min}} ng-maxlength={{field.max}} class="form-control" required/>
                     <span data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
                     <span data-ng-show=" {{'!form.'+key+'.required && (form.'+key+'.$error.minlength || form.'+key+'.$error.maxlength)' }}">Passwords must be between 8 and 20 characters.</span>
+                </div>
+            </div>
+
+            <!-- TEXT FIELDS -->
+            <div ng-if="field.type=='date'" class="form-group">
+                <label class="col-sm-2 control-label">{{field.label}}</label>
+                <div class="col-sm-6">
+                    <input type="{{ field.type }}" dynamic-name="{{key}}" id="{{key}}" data-ng-model="field.value"  class="form-control" required/>
+                    <!--<span ng-show="myForm.{{key}}.$dirty && myForm.{{key}}.$error.required">Required!</span>.-->
+                    <span  data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
                 </div>
             </div>
 
@@ -35,7 +45,7 @@
             <div ng-if="field.type=='dropdown'" class="form-group" >
                 <label class="col-sm-2 control-label">{{field.label}}</label>
                 <div class="col-sm-6">
-                    <select data-ng-model="field.data" ng-options="option for option in field.data" class="form-control" required/>
+                    <select data-ng-model="field.value" ng-options="key as option for (key, option) in field.data" class="form-control" required/>
                 </div>
             </div>
 
@@ -45,7 +55,7 @@
                 <div class="col-sm-6">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" data-ng-model="option.data"  name="taskGroup"  id="{{option.name}}" value="{{option.id}}" >
+                            <input type="checkbox" data-ng-model="field.value" name="taskGroup" value="1" >
                         </label>
                     </div>
 
@@ -53,4 +63,11 @@
             </div>
         </ng-form>
     </div>
+
+    <br/>
+    <button ng-disabled="myForm.$invalid" type="submit" id="submit">Spremi</button>
+    <br/>
+    <pre>{{entity|json}}</pre>
+    <br/>
+
 </form>

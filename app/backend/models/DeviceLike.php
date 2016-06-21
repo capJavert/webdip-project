@@ -2,6 +2,8 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
+require_once "User.php";
+require_once "Device.php";
 
 /**
  * Class DeviceLike
@@ -48,11 +50,13 @@ class DeviceLike extends ActiveRecord
         return array(
             'user_id' => array(
                 'type' => 'dropdown',
-                'label' => 'Korisnik'
+                'label' => 'Korisnik',
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'name')
             ),
             'device_id' => array(
                 'type' => 'dropdown',
-                'label' => "Uređaj"
+                'label' => "Uređaj",
+                'data' => Helpers::prepareDropDown(Device::model()->findAll(), 'id', 'name')
             )
         );
     }

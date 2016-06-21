@@ -2,6 +2,8 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
+require_once "Category.php";
+require_once "User.php";
 
 /**
  * Class CategoryLike
@@ -48,11 +50,13 @@ class CategoryLike extends ActiveRecord
         return array(
             'category_id' => array(
                 'type' => 'dropdown',
-                'label' => 'Kategorija'
+                'label' => 'Kategorija',
+                'data' => Helpers::prepareDropDown(Category::model()->findAll(), 'id', 'name')
             ),
             'user_id' => array(
                 'type' => 'dropdown',
-                'label' => "Korisnik"
+                'label' => "Korisnik",
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'name')
             )
         );
     }

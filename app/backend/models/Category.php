@@ -55,7 +55,8 @@ class Category extends ActiveRecord
             ),
             'root_id' => array(
                 'type' => 'dropdown',
-                'label' => "Roditelj"
+                'label' => "Roditelj",
+                'data' => Helpers::prepareDropDown(Category::model()->findAll(), 'id', 'name')
             ),
             'name' => array(
                 'type' => 'text',

@@ -29,7 +29,15 @@ if($validModel) {
     $service->prepareData();
 
     if(Router::isGetForm()) {
-        $data = $service->getForm();
+        $model = $modelName::model()->findOne(Router::getParam("id"));
+
+        if($model) {
+            $data = $service->getForm();
+
+            foreach($data as $key => $field) {
+                $data[$key]['value'] = $model->$key;
+            }
+        }
     }
 
 }

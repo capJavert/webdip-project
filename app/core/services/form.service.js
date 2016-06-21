@@ -7,7 +7,7 @@ factory('Form', ['$resource',
         return $resource('/backend/services/form', {}, {
             query: {
                 method: 'GET',
-                params: {model: 'model'},
+                params: {model: 'model', id: 'id'},
                 isArray: false
             }
         });

@@ -2,6 +2,7 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
+require_once "Device.php";
 
 /**
  * Class DeviceExtended
@@ -59,7 +60,8 @@ class DeviceExtended extends ActiveRecord
         return array(
             'device_id' => array(
                 'type' => 'dropdown',
-                'label' => 'Uređaj'
+                'label' => 'Uređaj',
+                'data' => Helpers::prepareDropDown(Device::model()->findAll(), 'id', 'name')
             ),
             'date_release' => array(
                 'type' => 'date',

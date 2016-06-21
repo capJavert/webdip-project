@@ -2,6 +2,7 @@
 
 require_once("Model.php");
 require_once("ActiveRecord.php");
+require_once "Category.php";
 
 /**
  * Class CategoryUserAssigned
@@ -49,11 +50,13 @@ class CategoryUserAssigned extends ActiveRecord
         return array(
             'user_id' => array(
                 'type' => 'text',
-                'label' => 'Korisnik'
+                'label' => 'Korisnik',
+                'data' => Helpers::prepareDropDown(User::model()->findAll(), 'id', 'name')
             ),
             'category_id' => array(
                 'type' => 'dropdown',
-                'label' => "Kategorija"
+                'label' => "Kategorija",
+                'data' => Helpers::prepareDropDown(Category::model()->findAll(), 'id', 'name')
             )
         );
     }
