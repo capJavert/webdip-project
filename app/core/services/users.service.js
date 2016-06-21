@@ -12,4 +12,14 @@ factory('User', ['$resource',
             }
         });
     }
+]).
+factory('UserList', ['$resource',
+    function($resource) {
+        return $resource('/backend/services/users', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        });
+    }
 ]);

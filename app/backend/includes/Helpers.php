@@ -20,4 +20,10 @@ class Helpers
 
         return $dropdown;
     }
+
+    public static function time() {
+        $adjust = 0;
+
+        return $adjust+time();
+    }
 }

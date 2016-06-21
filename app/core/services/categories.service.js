@@ -12,4 +12,14 @@ factory('Category', ['$resource',
             }
         });
     }
+]).
+factory('CategoryList', ['$resource',
+    function($resource) {
+        return $resource('/backend/services/categories', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        });
+    }
 ]);

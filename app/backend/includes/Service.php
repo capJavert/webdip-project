@@ -72,6 +72,10 @@ class Service
             $data = $modelName::model()->findAll();
         }
 
+        if(!$data) {
+            $data = new $modelName;
+        }
+
         return $json ? json_encode($data):$data;
     }
 

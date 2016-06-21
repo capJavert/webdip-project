@@ -57,28 +57,55 @@ class ActiveRecord
     }
 
     /**
-     * Save model
-     * @return bool
+     * @return array
      */
     public function save()
     {
-        $sql = "UPDATE $this->tableName SET";
+        $this->beforeSave();
 
-        foreach($this->attributes() as $attribute) {
-            $value = $this->$attribute[0];
-            $sql .= " $attribute[0]='$value',";
+        if($this->id) {
+            $sql = "UPDATE $this->tableName SET";
+
+            foreach($this->attributes() as $attribute) {
+                $value = $this->$attribute[0];
+                $sql .= " $attribute[0]='$value',";
+            }
+
+            $sql = rtrim($sql, ",");
+            $sql .= " WHERE id=$this->id;";
+        } else {
+            $sql = "INSERT INTO $this->tableName VALUES (default, ";
+
+            foreach($this->attributes() as $attribute) {
+                if($attribute[0]=='id') {
+                    continue;
+                }
+
+                $value = $this->$attribute[0];
+                $sql .= "'$value', ";
+            }
+
+            $sql = rtrim($sql, ", ");
+            $sql .= ");";
         }
 
-        $sql = rtrim($sql, ",");
-        $sql .= " WHERE id=$this->id;";
+        if($this->id) {
+            $return = array("success"=>$this->database->run($sql));
+        } else {
+            $return = array(
+                "success"=>$this->database->run($sql),
+                "id"=>$this->database->lastId()
+            );
+        }
 
-        return $this->database->run($sql);
+
+        return $return;
     }
 
     public function delete() {
         $sql = "DELETE FROM $this->tableName WHERE id=$this->id;";
 
-        return $this->database->run($sql);
+        return array("success"=>$this->database->run($sql));
     }
 
     /**
@@ -98,5 +125,8 @@ class ActiveRecord
         $stmt->execute();
 
         return $stmt->fetchAll();
+    }
+
+    public function beforeSave() {
     }
 }

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @var $data array
+ */
+
 $modelName = Router::getParam("model");
 
 $validModel = false;
@@ -31,12 +35,14 @@ if($validModel) {
     if(Router::isGetForm()) {
         $model = $modelName::model()->findOne(Router::getParam("id"));
 
-        if($model) {
-            $data = $service->getForm();
+        if(!$model) {
+            $model = new $modelName;
+        }
 
-            foreach($data as $key => $field) {
-                $data[$key]['value'] = $model->$key;
-            }
+        $data = $service->getForm();
+
+        foreach($data as $key => $field) {
+            $data[$key]['value'] = $model->$key;
         }
     }
 

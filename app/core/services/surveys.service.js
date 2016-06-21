@@ -12,4 +12,14 @@ factory('Survey', ['$resource',
             }
         });
     }
+]).
+factory('SurveyList', ['$resource',
+    function($resource) {
+        return $resource('/backend/services/surveys', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        });
+    }
 ]);

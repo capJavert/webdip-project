@@ -12,4 +12,14 @@ factory('Log', ['$resource',
             }
         });
     }
+]).
+factory('LogList', ['$resource',
+    function($resource) {
+        return $resource('/backend/services/logs', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        });
+    }
 ]);

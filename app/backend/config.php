@@ -9,7 +9,8 @@ return array(
         "/surveys" => "surveys.php",
         "/users" => "users.php",
         '/form' => "form.php",
-        '/submit' => "submit.php"
+        '/submit' => "submit.php",
+        '/delete' => "delete.php"
     ),
     "db" => array(
         "serverName" => "localhost",

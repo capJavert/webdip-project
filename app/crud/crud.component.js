@@ -5,8 +5,8 @@ angular.
     module('crud').
     component('crud', {
         templateUrl: 'crud/crud.template.html',
-        controller: ['$scope', '$routeParams', 'Form', 'Device', 'Category', 'File', 'Log', 'Survey', 'User',
-            function CrudController($scope, $routeParams, Form, Device, Category, File, Log, Survey, User) {
+        controller: ['$scope', '$window', '$routeParams', 'Form', 'Device', 'Category', 'File', 'Log', 'Survey', 'User',
+            function CrudController($scope, $window, $routeParams, Form, Device, Category, File, Log, Survey, User) {
                 var self = this;
 
                 switch($routeParams.modelName) {
@@ -63,6 +63,9 @@ angular.
                         success: function(data)
                         {
                             if(data.success) {
+                                if(data.id) {
+                                    $window.location.href = "/#!/crud/"+$routeParams.modelName+"/"+data.id;
+                                }
                                 //saved
                             }
                         }

@@ -12,4 +12,14 @@ factory('Device', ['$resource',
       }
     });
   }
+]).
+factory('DeviceList', ['$resource',
+  function($resource) {
+    return $resource('/backend/services/devices', {}, {
+      query: {
+        method: 'GET',
+        isArray: true
+      }
+    });
+  }
 ]);

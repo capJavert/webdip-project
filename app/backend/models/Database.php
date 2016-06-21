@@ -69,13 +69,20 @@ class Database extends PDO
             $this->statement->bindValue($key, $value);
         }
 
-
-        //$this->statement->debugDumpParams();
-
         $this->statement->execute();
         $result = $this->statement->fetchAll(PDO::FETCH_CLASS, $class);
         $this->statement = null;
 
         return count($result)==1 ? $result[0]:$result;
+    }
+
+    public function lastId() {
+        $this->statement = $this->prepare("SELECT LAST_INSERT_ID();");
+
+        $this->statement->execute();
+        $result = $this->statement->fetchAll();
+        $this->statement = null;
+
+        return $result[0][0];
     }
 }

@@ -13,6 +13,9 @@ config(['$locationProvider' ,'$routeProvider',
             when('/crud/:modelName/:mId', {
                 template: '<crud></crud>'
             }).
+            when('/crud/:modelName', {
+                template: '<crud-list></crud-list>'
+            }).
             when('/login', {
               template: '<login></login>'
             }).

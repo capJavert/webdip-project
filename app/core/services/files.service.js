@@ -12,4 +12,14 @@ factory('File', ['$resource',
             }
         });
     }
+]).
+factory('FileList', ['$resource',
+    function($resource) {
+        return $resource('/backend/services/files', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        });
+    }
 ]);

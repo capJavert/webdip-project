@@ -19,26 +19,18 @@ switch($modelName) {
         break;
 }
 
-$saved = false;
+$deleted = false;
 
 if($validModel) {
     require_once(__DIR__."/../../models/".$modelName.".php");
 
     $model = $modelName::model()->findOne(Router::getParam("id"));
 
-    if(!$model) {
-        $model = new $modelName;
+    if($model) {
+        $deleted = $model->delete();
     }
-
-    $newModel = json_decode(Router::getParam("object"), true);
-
-    foreach($newModel as $key => $property) {
-        $model->$key = $property['value'];
-    }
-
-    $saved = $model->save();
 }
 
-echo json_encode($saved);
+echo json_encode($deleted);
 
 ?>
