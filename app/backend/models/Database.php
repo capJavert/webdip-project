@@ -49,7 +49,10 @@ class Database extends PDO
      */
     public function run($sql, $params=array()) {
         $this->statement = $this->prepare($sql);
-        $this->params($params);
+
+        foreach($params as $key => $value) {
+            $this->statement->bindValue($key, $value);
+        }
 
         $result = $this->statement->execute();
         $this->statement = null;

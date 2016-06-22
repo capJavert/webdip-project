@@ -64,7 +64,7 @@ angular.
                         {
                             if(data.success) {
                                 if(data.id) {
-                                    $window.location.href = "/#!/crud/"+$routeParams.modelName+"/"+data.id;
+                                    $window.location.href = "/#/crud/"+$routeParams.modelName+"/"+data.id;
                                 }
                                 //saved
                             }

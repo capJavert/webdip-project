@@ -58,7 +58,7 @@ component('crudList', {
                     success: function(data)
                     {
                         if(data.success) {
-                            $window.location.href = "/#!/crud/"+$routeParams.modelName;
+                            $window.location.href = "/#/crud/"+$routeParams.modelName;
                         }
                         //saved
                     }
