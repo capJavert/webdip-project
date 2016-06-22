@@ -24,7 +24,7 @@ class Time extends ActiveRecord {
     public function __construct()
     {
         parent::__construct();
-        $this->setTableName(Category::get_table_name());
+        $this->setTableName(Time::get_table_name());
     }
 
     /**

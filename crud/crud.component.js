@@ -5,8 +5,8 @@ angular.
     module('crud').
     component('crud', {
         templateUrl: 'crud/crud.template.html',
-        controller: ['$scope', '$window', '$routeParams', 'Form', 'Device', 'Category', 'File', 'Log', 'Survey', 'User', 'DeviceExtended', 'CategoryLike', 'CategoryUserAssigned', 'DeviceLike', 'DeviceStore', 'DeviceStoreAssigned', 'FileDeviceAssigned', 'SurveyData', 'SurveyField', 'UserRole',
-            function CrudController($scope, $window, $routeParams, Form, Device, Category, File, Log, Survey, User, DeviceExtended, CategoryLike, CategoryUserAssigned, DeviceLike, DeviceStore, DeviceStoreAssigned, FileDeviceAssigned, SurveyData, SurveyField, UserRole) {
+        controller: ['$scope', '$window', '$routeParams', 'Form', 'Device', 'Category', 'File', 'Log', 'Survey', 'User', 'DeviceExtended', 'CategoryLike', 'CategoryUserAssigned', 'DeviceLike', 'DeviceStore', 'DeviceStoreAssigned', 'FileDeviceAssigned', 'SurveyData', 'SurveyField', 'UserRole', 'Time',
+            function CrudController($scope, $window, $routeParams, Form, Device, Category, File, Log, Survey, User, DeviceExtended, CategoryLike, CategoryUserAssigned, DeviceLike, DeviceStore, DeviceStoreAssigned, FileDeviceAssigned, SurveyData, SurveyField, UserRole, Time) {
                 var self = this;
 
                 switch($routeParams.modelName) {
@@ -60,60 +60,67 @@ angular.
                         self.modelName = 'DeviceExtended';
                         break;
                     case 'devices-likes':
-                        self.models = DeviceLike.query( function(models) {
+                        self.model = DeviceLike.query( function(models) {
 
                         });
                         self.form = Form.query({model: 'DeviceLike', id: $routeParams.mId});
                         self.modelName = 'DeviceLike';
                         break;
                     case 'devices-stores':
-                        self.models = DeviceStore.query( function(models) {
+                        self.model = DeviceStore.query( function(models) {
 
                         });
                         self.form = Form.query({model: 'DeviceStore', id: $routeParams.mId});
                         self.modelName = 'DeviceStore';
                         break;
                     case 'devices-stores-assigned':
-                        self.models = DeviceStoreAssigned.query( function(models) {
+                        self.model = DeviceStoreAssigned.query( function(models) {
 
                         });
                         self.form = Form.query({model: 'DeviceStoreAssigned', id: $routeParams.mId});
                         self.modelName = 'DeviceStoreAssigned';
                         break;
                     case 'files-devices-assigned':
-                        self.models = FileDeviceAssigned.query( function(models) {
+                        self.model = FileDeviceAssigned.query( function(models) {
 
                         });
                         self.form = Form.query({model: 'FileDeviceAssigned', id: $routeParams.mId});
                         self.modelName = 'FileDeviceAssigned';
                         break;
                     case 'surveys-data':
-                        self.models = SurveyData.query( function(models) {
+                        self.model = SurveyData.query( function(models) {
 
                         });
                         self.form = Form.query({model: 'SurveyData', id: $routeParams.mId});
                         self.modelName = 'SurveyData';
                         break;
                     case 'surveys-fields':
-                        self.models = SurveyField.query( function(models) {
+                        self.model = SurveyField.query( function(models) {
 
                         });
                         self.form = Form.query({model: 'SurveyField', id: $routeParams.mId});
                         self.modelName = 'SurveyField';
                         break;
                     case 'categories-likes':
-                        self.models = CategoryLike.query( function(models) {
+                        self.model = CategoryLike.query( function(models) {
 
                         });
                         self.form = Form.query({model: 'CategoryLike', id: $routeParams.mId});
                         self.modelName = 'CategoryLike';
                         break;
                     case 'categories-users-assigned':
-                        self.models = CategoryUserAssigned.query( function(models) {
+                        self.model = CategoryUserAssigned.query( function(models) {
 
                         });
                         self.form = Form.query({model: 'CategoryUserAssigned', id: $routeParams.mId});
                         self.modelName = 'CategoryUserAssigned';
+                        break;
+                    case 'time':
+                        self.model = CategoryUserAssigned.query( function(models) {
+
+                        });
+                        self.form = Form.query({model: 'Time', id: $routeParams.mId});
+                        self.modelName = 'Time';
                         break;
                 }
 

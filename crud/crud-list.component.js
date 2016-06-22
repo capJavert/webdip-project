@@ -5,8 +5,8 @@ angular.
 module('crud').
 component('crudList', {
     templateUrl: 'crud/crud-list.template.html',
-    controller: ['$scope', '$window', '$routeParams', 'DeviceList', 'CategoryList', 'FileList', 'LogList', 'SurveyList', 'UserList', 'DeviceExtendedList', 'CategoryLikeList', 'CategoryUserAssignedList', 'DeviceLikeList', 'DeviceStoreList', 'DeviceStoreAssignedList', 'FileDeviceAssignedList', 'SurveyDataList', 'SurveyFieldList', 'UserRole',
-        function CrudListController($scope, $window, $routeParams, DeviceList, CategoryList, FileList, LogList, SurveyList, UserList, DeviceExtendedList, CategoryLikeList, CategoryUserAssignedList, DeviceLikeList, DeviceStoreList, DeviceStoreAssignedList, FileDeviceAssignedList, SurveyDataList, SurveyFieldList, UserRole) {
+    controller: ['$scope', '$window', '$routeParams', 'DeviceList', 'CategoryList', 'FileList', 'LogList', 'SurveyList', 'UserList', 'DeviceExtendedList', 'CategoryLikeList', 'CategoryUserAssignedList', 'DeviceLikeList', 'DeviceStoreList', 'DeviceStoreAssignedList', 'FileDeviceAssignedList', 'SurveyDataList', 'SurveyFieldList', 'UserRole', 'TimeList',
+        function CrudListController($scope, $window, $routeParams, DeviceList, CategoryList, FileList, LogList, SurveyList, UserList, DeviceExtendedList, CategoryLikeList, CategoryUserAssignedList, DeviceLikeList, DeviceStoreList, DeviceStoreAssignedList, FileDeviceAssignedList, SurveyDataList, SurveyFieldList, UserRole, TimeList) {
             var self = this;
             self.type = $routeParams.modelName;
 
@@ -100,6 +100,12 @@ component('crudList', {
 
                     });
                     self.modelsName = 'CategoryUserAssigned';
+                    break;
+                case 'time':
+                    self.models = TimeList.query( function(models) {
+
+                    });
+                    self.modelsName = 'Time';
                     break;
             }
 
