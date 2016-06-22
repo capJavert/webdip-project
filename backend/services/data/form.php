@@ -5,7 +5,7 @@ require_once(__DIR__."/../../header.php");
 
 /**
  * @var $data array
- * @var $model ActiveRecord
+ * @var $model Device|ActiveRecord
  * @var $modelName Device|ActiveRecord
  */
 
@@ -34,13 +34,21 @@ if($validModel) {
             $model = new $modelName;
         }
 
-        $data = $service->getForm();
+        if($modelName=="Device") {
+            $data = $service->getForm($model->files());
+        } else {
+            $data = $service->getForm();
+        }
+
+        var_dump($data) or die;
 
         foreach($data as $key => $field) {
-            $data[$key]['value'] = $model->$key;
+            if($model->test($key)) {
+                $data[$key]['value'] = $model->$key;
 
-            if($key=='visible') {
-                $data[$key]['value'] = $model->$key ? true:false;
+                if($key=='visible') {
+                    $data[$key]['value'] = $model->$key ? true:false;
+                }
             }
         }
     }

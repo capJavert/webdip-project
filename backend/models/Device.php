@@ -4,6 +4,8 @@ require_once("Model.php");
 require_once("ActiveRecord.php");
 require_once "Category.php";
 require_once "User.php";
+require_once "FileDeviceAssigned.php";
+require_once "File.php";
 
 /**
  * Class Device
@@ -47,9 +49,10 @@ class Device extends ActiveRecord
 
     /**
      * Form data for model
+     * @param File $files
      * @return array
      */
-    public static function formData() {
+    public static function formData($files = array()) {
         return array(
             'created_by' => array(
                 'type' => 'dropdown',
@@ -68,6 +71,15 @@ class Device extends ActiveRecord
             'visible' => array(
                 'type' => 'checkbox',
                 'label' => 'Prikaži'
+            ),
+            'upload' => array(
+                'type' => 'upload',
+                'label' => 'Upload'
+            ),
+            'files' => array(
+                'type' => 'images',
+                'label' => 'Slike',
+                'data' => $files
             )
         );
     }
@@ -82,5 +94,20 @@ class Device extends ActiveRecord
 
         $this->date_added = Helpers::time();
         $this->date_updated = Helpers::time();
+    }
+
+    /**
+     * @return array
+     */
+    public function files() {
+        $criteria = new Criteria();
+        $criteria->setJoin("LEFT JOIN files_devices_assigned fda ON fda.file_id=files.id
+        LEFT JOIN devices d ON fda.device_id=d.id");
+        $criteria->setCondition("d.id=:id");
+        $criteria->addParam("id", $this->id);
+
+        $files = File::model()->findAll($criteria);
+
+        return $files;
     }
 }

@@ -36,7 +36,9 @@ if($validModel) {
             $property['value'] = $property['value'] ? 1:0;
         }
 
-        $model->$key = $property['value'];
+        if($model->test($key)) {
+            $model->$key = $property['value'];
+        }
     }
 
     $saved = $model->save();

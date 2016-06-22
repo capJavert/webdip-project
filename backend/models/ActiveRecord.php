@@ -129,6 +129,17 @@ class ActiveRecord
         return $stmt->fetchAll();
     }
 
+    /**
+     * Before saved, defined when extended
+     */
     public function beforeSave() {
+    }
+
+    /**
+     * @param $property
+     * @return bool
+     */
+    public function test($property) {
+        return property_exists(get_class($this), $property);
     }
 }
