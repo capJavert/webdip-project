@@ -10,19 +10,19 @@ require_once "Device.php";
 class DeviceExtended extends ActiveRecord
 {
     public $device_id;
-    public $date_release;
-    public $cpu;
-    public $ram;
-    public $memory;
-    public $graphics;
+    //public $date_release;
+    //public $cpu;
+    //public $ram;
+    //public $memory;
+    //public $graphics;
     public $wifi;
     public $internet;
-    public $memory_cards;
+    //public $memory_cards;
     public $dual_sim;
-    public $camera;
-    public $front_camera;
-    public $os;
-    public $manufacturer;
+    //public $camera;
+    //public $front_camera;
+    //public $os;
+    //public $manufacturer;
     private static $table_name = "devices_extended";
 
     /**

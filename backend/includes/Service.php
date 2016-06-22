@@ -24,8 +24,12 @@ class Service
     private function addConstant($constant) {
         $condition = "";
 
+        $specials = json_decode($this->options['params']);
+
         switch($constant) {
             case "GET_BY_ID": $condition = "id=:id";
+                break;
+            case "GET_BY_PROP": $condition = $specials->SPECprop."=:value";
                 break;
         }
 
@@ -42,7 +46,8 @@ class Service
             switch($key) {
                 case 'join': $this->criteria->setJoin($value);
                     break;
-                case 'condition': $this->criteria->setCondition($this->addConstant($value));
+                case 'condition':
+                    $this->criteria->setCondition($this->addConstant($value));
                     break;
                 case 'order': $this->criteria->setOrder($value);
                     break;
@@ -52,7 +57,9 @@ class Service
                     $value = json_decode($value);
 
                     foreach($value as $name => $param) {
-                        $this->criteria->addParam($name, $param);
+                        if(strpos($name, 'SPEC')===false) {
+                            $this->criteria->addParam($name, $param);
+                        }
                     }
                     break;
             }

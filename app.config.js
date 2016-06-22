@@ -10,6 +10,9 @@ config(['$locationProvider' ,'$routeProvider',
             when('/devices', {
               template: '<device-list></device-list>'
             }).
+            when('/devices/:dId', {
+                template: '<device-detail></device-detail>'
+            }).
             when('/crud/:modelName/:mId', {
                 template: '<crud></crud>'
             }).
@@ -19,8 +22,8 @@ config(['$locationProvider' ,'$routeProvider',
             when('/login', {
               template: '<login></login>'
             }).
-            when('/devices/:deviceId', {
-              template: '<device-detail></device-detail>'
+            otherwise('/error/404', {
+                template: '<error-404></error-404>'
             })
     }
 ]);

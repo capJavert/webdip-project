@@ -10,9 +10,9 @@ $service->prepareData();
 if(Router::isGetForm()) {
     $data = $service->getForm(true);
 } else {
-    $data = $service->getData();
+    $data = $service->getData(true);
 }
 
-echo json_encode($data);
+echo $data;
 
 ?>
