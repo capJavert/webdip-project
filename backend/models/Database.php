@@ -7,9 +7,9 @@
 class Database extends PDO
 {
     private $serverName = "localhost";
-    private $username = "WebDiP2015x005";
-    private $password = "admin_Eurj";
-    private $dbName = "WebDiP2015x005";
+    private $username = "root";
+    private $password = "";
+    private $dbName = "webdip_project";
     private $statement;
 
     /**

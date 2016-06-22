@@ -115,13 +115,13 @@ class ActiveRecord
      * @return array
      */
     public function attributes() {
-        $dbSchema = new PDO("mysql:dbname=information_schema;host=localhost", "WebDiP2015x005", "admin_Eurj", array(
+        $dbSchema = new PDO("mysql:dbname=information_schema;host=localhost", "root", "", array(
             PDO::ATTR_EMULATE_PREPARES => false,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ));
 
         $stmt = $dbSchema->prepare("SELECT COLUMN_NAME FROM COLUMNS
-            WHERE TABLE_SCHEMA='WebDiP2015x005'
+            WHERE TABLE_SCHEMA='webdip_project'
             AND TABLE_NAME='$this->tableName';");
 
         $stmt->execute();
