@@ -35,7 +35,7 @@
             <div ng-if="field.type=='date'" class="form-group">
                 <label class="col-sm-2 control-label">{{field.label}}</label>
                 <div class="col-sm-6">
-                    <input type="{{ field.type }}" dynamic-name="{{key}}" id="{{key}}" data-ng-model="field.value"  class="form-control" required/>
+                    <input type="text" dynamic-name="{{key}}" id="{{key}}" data-ng-model="field.value"  class="form-control" required/>
                     <!--<span ng-show="crudForm.{{key}}.$dirty && crudForm.{{key}}.$error.required">Required!</span>.-->
                     <span  data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
                 </div>
@@ -55,7 +55,7 @@
                 <div class="col-sm-6">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" data-ng-model="field.value" name="taskGroup" value="1" >
+                            <input data-ng-model="field.value" type="checkbox" id="{{key}}" dynamic-name="{{key}}" name="taskGroup">
                         </label>
                     </div>
 

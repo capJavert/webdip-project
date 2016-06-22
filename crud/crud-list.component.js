@@ -5,8 +5,8 @@ angular.
 module('crud').
 component('crudList', {
     templateUrl: 'crud/crud-list.template.html',
-    controller: ['$scope', '$window', '$routeParams', 'DeviceList', 'CategoryList', 'FileList', 'LogList', 'SurveyList', 'UserList',
-        function CrudListController($scope, $window, $routeParams, DeviceList, CategoryList, FileList, LogList, SurveyList, UserList) {
+    controller: ['$scope', '$window', '$routeParams', 'DeviceList', 'CategoryList', 'FileList', 'LogList', 'SurveyList', 'UserList', 'DeviceExtendedList', 'CategoryLikeList', 'CategoryUserAssignedList', 'DeviceLikeList', 'DeviceStoreList', 'DeviceStoreAssignedList', 'FileDeviceAssignedList', 'SurveyDataList', 'SurveyFieldList', 'UserRole',
+        function CrudListController($scope, $window, $routeParams, DeviceList, CategoryList, FileList, LogList, SurveyList, UserList, DeviceExtendedList, CategoryLikeList, CategoryUserAssignedList, DeviceLikeList, DeviceStoreList, DeviceStoreAssignedList, FileDeviceAssignedList, SurveyDataList, SurveyFieldList, UserRole) {
             var self = this;
             self.type = $routeParams.modelName;
 
@@ -46,6 +46,60 @@ component('crudList', {
 
                     });
                     self.modelsName = 'User';
+                    break;
+                case 'devices-extended':
+                    self.models = DeviceExtendedList.query( function(models) {
+
+                    });
+                    self.modelsName = 'DeviceExtended';
+                    break;
+                case 'devices-likes':
+                    self.models = DeviceLikeList.query( function(models) {
+
+                    });
+                    self.modelsName = 'DeviceLike';
+                    break;
+                case 'devices-stores':
+                    self.models = DeviceStoreList.query( function(models) {
+
+                    });
+                    self.modelsName = 'DeviceStore';
+                    break;
+                case 'devices-stores-assigned':
+                    self.models = DeviceStoreAssignedList.query( function(models) {
+
+                    });
+                    self.modelsName = 'DeviceStoreAssigned';
+                    break;
+                case 'files-devices-assigned':
+                    self.models = FileDeviceAssignedList.query( function(models) {
+
+                    });
+                    self.modelsName = 'FileDeviceAssigned';
+                    break;
+                case 'surveys-data':
+                    self.models = SurveyDataList.query( function(models) {
+
+                    });
+                    self.modelsName = 'SurveyData';
+                    break;
+                case 'surveys-fields':
+                    self.models = SurveyFieldList.query( function(models) {
+
+                    });
+                    self.modelsName = 'SurveyField';
+                    break;
+                case 'categories-likes':
+                    self.models = CategoryLikeList.query( function(models) {
+
+                    });
+                    self.modelsName = 'CategoryLike';
+                    break;
+                case 'categories-users-assigned':
+                    self.models = CategoryUserAssignedList.query( function(models) {
+
+                    });
+                    self.modelsName = 'CategoryUserAssigned';
                     break;
             }
 

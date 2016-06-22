@@ -10,13 +10,17 @@
             <tr>
                 <th>ID</th>
                 <th>Naziv</th>
+                <th>Datum</th>
                 <th>&nbsp;</th>
             </tr>
         </thead>
             <tbody>
                 <tr ng-repeat="(key, model) in $ctrl.models" data-key="9">
                     <td>{{model.id}}</td>
-                    <td>{{model.name}}{{model.username}}</td>
+                    <td ng-if="model.name===undefined">{{$ctrl.modelsName}} #{{model.id}}</td>
+                    <td ng-if="model.name!==undefined">{{model.name}}</td>
+                    <td ng-if="model.date_added===undefined">/</td>
+                    <td ng-if="model.date_added!==undefined">{{model.date_added}}</td>
                     <td>
                         <a data-pjax="0" aria-label="Uredi" title="Uredi" href="/WebDiP/2015_projekti/WebDiP2015x005/#/crud/{{$ctrl.type}}/{{model.id}}">
                             <span class="glyphicon glyphicon-pencil"></span>
