@@ -44,6 +44,10 @@ if($validModel) {
             if($model->test($key)) {
                 $data[$key]['value'] = $model->$key;
 
+                if(count(explode("date_", $key))>1) {
+                    $data[$key]['value'] = date("d.m.Y", $model->$key);
+                }
+
                 if($key=='visible') {
                     $data[$key]['value'] = $model->$key ? true:false;
                 }

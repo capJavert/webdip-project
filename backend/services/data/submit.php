@@ -38,6 +38,10 @@ if($validModel) {
 
         if($model->test($key)) {
             $model->$key = $property['value'];
+
+            if(count(explode("date_", $key))>1) {
+                $model->$key = strtotime($property['value']);
+            }
         }
     }
 

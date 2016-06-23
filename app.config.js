@@ -2,9 +2,13 @@
 
 angular.
 module('phoneApp').
-config(['$routeProvider',
-    function config($routeProvider) {
+config(['$routeProvider', '$locationProvider',
+    function config($routeProvider, $locationProvider) {
         //$locationProvider.hashPrefix('!');
+        //$locationProvider.html5Mode({
+        //   //enabled: true,
+        //    requireBase: false
+        //});
 
         $routeProvider.
             when('/devices', {
@@ -25,6 +29,9 @@ config(['$routeProvider',
             when('/registration', {
                 template: '<registration></registration>'
             }).
+            when("/", {
+                template: '<device-list></device-list>'
+            }).
             otherwise('/error/404', {
                 template: '<error-404></error-404>'
             })
@@ -34,12 +41,17 @@ run(['$window', '$rootScope', 'User', 'AccessControl',
     function main($window, $rootScope, User, AccessControl) {
         $rootScope.$on('$routeChangeStart',
             function(event, toState, toParams, fromState, fromParams){
+                if(typeof toState.originalPath==="undefined") {
+                    toState.originalPath = "/home";
+                }
+
                 AccessControl.get({route: toState.originalPath}, function(model) {
                     if(!model.access) {
                         event.preventDefault();
 
                         if(model.logged) {
-                            alert("Nemate pravo pristup ovoj stranici. Obratite se Adminu za pomoć.");
+                            if(toState.originalPath!="/" && toState.originalPath!="")
+                                alert("Nemate pravo pristup ovoj stranici. Obratite se Adminu za pomoć.");
                             $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/devices";
                         } else {
                             $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/login";
