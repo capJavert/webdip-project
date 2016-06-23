@@ -5,8 +5,8 @@ angular.
     module('crud').
     component('crud', {
         templateUrl: 'crud/crud.template.html',
-        controller: ['$scope', '$window', '$routeParams', 'Form', 'Device', 'Category', 'File', 'Log', 'Survey', 'User', 'DeviceExtended', 'CategoryLike', 'CategoryUserAssigned', 'DeviceLike', 'DeviceStore', 'DeviceStoreAssigned', 'FileDeviceAssigned', 'SurveyData', 'SurveyField', 'UserRole', 'Time',
-            function CrudController($scope, $window, $routeParams, Form, Device, Category, File, Log, Survey, User, DeviceExtended, CategoryLike, CategoryUserAssigned, DeviceLike, DeviceStore, DeviceStoreAssigned, FileDeviceAssigned, SurveyData, SurveyField, UserRole, Time) {
+        controller: ['$location', '$route', '$scope', '$window', '$routeParams', 'Form', 'Device', 'Category', 'File', 'Log', 'Survey', 'User', 'DeviceExtended', 'CategoryLike', 'CategoryUserAssigned', 'DeviceLike', 'DeviceStore', 'DeviceStoreAssigned', 'FileDeviceAssigned', 'SurveyData', 'SurveyField', 'UserRole', 'Time',
+            function CrudController($location, $route, $scope, $window, $routeParams, Form, Device, Category, File, Log, Survey, User, DeviceExtended, CategoryLike, CategoryUserAssigned, DeviceLike, DeviceStore, DeviceStoreAssigned, FileDeviceAssigned, SurveyData, SurveyField, UserRole, Time) {
                 var self = this;
 
                 switch($routeParams.modelName) {
@@ -162,16 +162,11 @@ angular.
                         success: function(data)
                         {
                             if(data.success) {
-                                $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/crud/"+$routeParams.modelName+"/"+$routeParams.mId;
+                                $route.reload();
                                 //file uploaded
                             }
                         }
                     });
-                };
-
-                $scope.uploadFile = function() {
-                    console.log("lala");
-
                 };
             }
         ]

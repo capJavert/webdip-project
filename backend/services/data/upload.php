@@ -24,13 +24,13 @@ if($model) {
         foreach ($_FILES as $file) {
             $genericName = 'FILE'.Helpers::time();
             $extension = ".".pathinfo($file['name'],PATHINFO_EXTENSION);
-            $uploadPath = __DIR__ . '/../uploads/'.$genericName.$extension;
+            $uploadPath = __DIR__ . '/../../../uploads/'.$genericName.$extension;
 
             if (move_uploaded_file($file['tmp_name'], $uploadPath)) {
                 $filePath = $uploadPath . $file['name'];
                 $newFile = new File();
                 $newFile->added_by = 1;
-                $newFile->name = $genericName;
+                $newFile->name = $genericName.$extension;
                 $newFile->original_name = $file['name'];
                 $newFile->extension = $extension;
                 $newFile->size = $file['size'];

@@ -57,17 +57,20 @@ h1 {
 }
 
 .phone-thumbs img {
-  height: 100px;
   padding: 1em;
-  width: 100px;
+  height: 100px;
 }
 
 .phone-thumbs li {
+
   background-color: white;
   border: 1px solid black;
   cursor: pointer;
   display: inline-block;
   margin: 1em;
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
 }
 
 .specs {

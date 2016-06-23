@@ -5,11 +5,20 @@
  */
 class Criteria
 {
+    public $select = "*";
     public $join;
     public $condition;
     public $params = array();
     public $order;
     public $limit;
+
+    /**
+     * @param mixed $select
+     */
+    public function setSelect($select)
+    {
+        $this->select = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/', '', $select);
+    }
 
     /**
      * @param mixed $join

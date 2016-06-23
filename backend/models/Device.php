@@ -101,6 +101,7 @@ class Device extends ActiveRecord
      */
     public function files() {
         $criteria = new Criteria();
+        $criteria->setSelect("files.*, fda.*");
         $criteria->setJoin("LEFT JOIN files_devices_assigned fda ON fda.file_id=files.id
         LEFT JOIN devices d ON fda.device_id=d.id");
         $criteria->setCondition("d.id=:id");
@@ -108,6 +109,6 @@ class Device extends ActiveRecord
 
         $files = File::model()->findAll($criteria);
 
-        return $files;
+        return is_array($files) ? $files:array($files);
     }
 }

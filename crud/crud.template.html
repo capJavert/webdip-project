@@ -72,7 +72,11 @@
 
             <!-- IMAGES -->
             <div ng-if="field.type=='images'" class="form-group" >
-
+                <ul class="phone-thumbs">
+                    <li ng-repeat="img in field.data">
+                        <img ng-src="uploads/{{img.name}}" alt="{{img.alt}}" />
+                    </li>
+                </ul>
             </div>
         </ng-form>
     </div>
