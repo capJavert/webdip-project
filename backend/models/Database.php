@@ -17,10 +17,13 @@ class Database extends PDO
      */
     public function __construct($dsn=null, $username=null, $passwd=null, $options=array())
     {
-        parent::__construct("mysql:dbname=$this->dbName;host=$this->serverName", $this->username, $this->password, array(
+        parent::__construct("mysql:dbname=$this->dbName;host=$this->serverName;charset=utf8", $this->username, $this->password, array(
             PDO::ATTR_EMULATE_PREPARES => false,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ));
+
+        //old php versions
+        $this->exec("set names utf8");
 
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
