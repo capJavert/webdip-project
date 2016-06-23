@@ -44,6 +44,8 @@ class Service
 
         foreach($this->options as $key=>$value) {
             switch($key) {
+                case 'select': $this->criteria->setSelect($value);
+                    break;
                 case 'join': $this->criteria->setJoin($value);
                     break;
                 case 'condition':
@@ -79,7 +81,7 @@ class Service
             $data = $modelName::model()->findAll();
         }
 
-        if(!$data) {
+        if(!$data && new Criteria()==$this->criteria) {
             $data = new $modelName;
         }
 

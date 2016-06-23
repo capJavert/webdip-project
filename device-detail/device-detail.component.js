@@ -5,24 +5,30 @@ angular.
 module('deviceDetail').
 component('deviceDetail', {
     templateUrl: 'device-detail/device-detail.template.html',
-    controller: ['$scope', '$window', '$routeParams', 'Device', 'DeviceExtended',
-    function DeviceDetailController($scope, $window, $routeParams, Device, DeviceExtended) {
-        var self = this;
+    controller: ['$scope', '$window', '$routeParams', 'Device', 'FileList', 'DeviceExtended',
+        function DeviceDetailController($scope, $window, $routeParams, Device, FileList, DeviceExtended) {
+            var self = this;
 
-        self.model = Device.get({condition: 'GET_BY_ID', params: {id: $routeParams.dId}}, function(model) {
-            //got data
-            self.modelExtended = DeviceExtended.get({condition: 'GET_BY_PROP', params: {SPECprop: "device_id", value: $routeParams.dId}}, function(model) {
+            self.model = Device.get({condition: 'GET_BY_ID', params: {id: $routeParams.dId}}, function(model) {
+                //got data
+                self.modelExtended = DeviceExtended.get({condition: 'GET_BY_PROP', params: {SPECprop: "device_id", value: $routeParams.dId}}, function(model) {
 
+                });
             });
-        });
 
-        //self.device = Device.get({deviceId: $routeParams.deviceId}, function(device) {
-        //self.setImage(device.images[0]);
-        //});
+            self.images = FileList.query({condition: 'GET_BY_PROP', join: "LEFT JOIN files_devices_assigned fda ON fda.file_id=files.id", params: {SPECprop: "fda.device_id", value: $routeParams.dId}}, function(model) {
+                //got data
+                if(!model.length) {
+                    self.noImages = true;
+                } else {
+                    self.setImage(model[0]);
+                    self.noImages = false;
+                }
+            });
 
-        //self.setImage = function setImage(imageUrl) {
-        //self.mainImageUrl = imageUrl;
-        //};
+            self.setImage = function setImage(imageUrl) {
+                self.mainImageUrl = imageUrl;
+            };
         }
     ]
 });

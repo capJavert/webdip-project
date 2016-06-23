@@ -1,36 +1,41 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2">
-      <!--Sidebar content-->
+    <div class="row">
+        <div class="col-md-2">
+            <!--Sidebar content-->
 
-      <p>
-        Pretraživanje:
-        <input ng-model="$ctrl.query" />
-      </p>
+            <p>
+                Pretraživanje:
+                <input ng-model="$ctrl.query" />
+            </p>
 
-      <p>
-        Sortiraj prema:
-        <select ng-model="$ctrl.orderProp">
-          <option value="name">Ime</option>
-          <option value="id">Novo</option>
-        </select>
-      </p>
+            <p>
+                Sortiraj prema:
+                <select ng-model="$ctrl.orderProp">
+                    <option value="name">Ime</option>
+                    <option value="id">Novo</option>
+                </select>
+            </p>
 
+        </div>
+        <div class="col-md-10">
+            <!--Body content-->
+
+            <ul class="phones">
+                <li ng-repeat="model in $ctrl.models | filter:$ctrl.query | orderBy:$ctrl.orderProp"
+                    class="thumbnail model-list-item">
+                    <a href="#/device/{{model.id}}" class="thumb">
+                        <img ng-if="!model.image" ng-src="images/no-image.png" alt="No image" />
+                        <img ng-if="model.image" ng-src="uploads/{{model.image}}" alt="{{model.alt}}" />
+                    </a>
+                    <div class="title">
+                        <a href="#/devices/{{model.id}}">
+                            <h3>{{model.name}}</h3>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
+
+        </div>
     </div>
-    <div class="col-md-10">
-      <!--Body content-->
-
-      <ul class="models">
-        <li ng-repeat="model in $ctrl.models | filter:$ctrl.query | orderBy:$ctrl.orderProp"
-            class="thumbnail model-list-item">
-          <a href="#/device/{{model.id}}" class="thumb">
-            <img ng-src="{{model.imageUrl}}" alt="{{model.name}}" />
-          </a>
-          <a href="#/devices/{{model.id}}">{{model.name}}</a>
-          <p>{{model.snippet}}</p>
-        </li>
-      </ul>
-
-    </div>
-  </div>
 </div>

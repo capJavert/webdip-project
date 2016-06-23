@@ -41,7 +41,7 @@ class Database extends PDO
      */
     private function params($params) {
         foreach($params as $key => $param) {
-            $this->statement->bindParam($key, $param);
+            $this->statement->bindValue($key, $param);
         }
     }
 
@@ -53,9 +53,7 @@ class Database extends PDO
     public function run($sql, $params=array()) {
         $this->statement = $this->prepare($sql);
 
-        foreach($params as $key => $value) {
-            $this->statement->bindValue($key, $value);
-        }
+        $this->params($params);
 
         $result = $this->statement->execute();
         $this->statement = null;
@@ -71,9 +69,7 @@ class Database extends PDO
     public function get($sql, $class, $params=array()) {
         $this->statement = $this->prepare($sql);
 
-        foreach($params as $key => $value) {
-            $this->statement->bindValue($key, $value);
-        }
+        $this->params($params);
 
         $this->statement->execute();
         $result = $this->statement->fetchAll(PDO::FETCH_CLASS, $class);

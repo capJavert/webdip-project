@@ -1,15 +1,19 @@
 <div class="phone-images">
-<img ng-src="{{img}}" class="phone"
-    ng-class="{selected: img === $ctrl.mainImageUrl}"
-    ng-repeat="img in $ctrl.model.images" />
+    <img ng-if="$ctrl.noImages" ng-src="images/no-image.png" class="phone"
+         ng-class="selected" />
+    <img ng-if="!$ctrl.noImages" ng-src="uploads/{{img.name}}" class="phone"
+        ng-class="{selected: img === $ctrl.mainImageUrl}"
+        ng-repeat="img in $ctrl.images" />
 </div>
 
 <h1>{{$ctrl.model.name}}</h1>
 
+<p ng-if="$ctrl.noImages">Nema slika za ovaj uređaj</p>
+
 <ul class="phone-thumbs">
-<li ng-repeat="img in $ctrl.model.images">
-<img ng-src="{{img}}" ng-click="$ctrl.setImage(img)" />
-</li>
+    <li ng-repeat="img in $ctrl.images">
+        <img ng-src="uploads/{{img.name}}" ng-click="$ctrl.setImage(img)" alt="{{img.alt}}" />
+    </li>
 </ul>
 
 <ul class="specs">
