@@ -78,7 +78,7 @@ class Database extends PDO
         return count($result)==1 ? $result[0]:$result;
     }
 
-    public function lastId() {
+    public function lastId() {		
         $this->statement = $this->prepare("SELECT LAST_INSERT_ID();");
 
         $this->statement->execute();

@@ -46,6 +46,11 @@ run(['$window', '$rootScope', 'User', 'AccessControl',
                     toState.originalPath = "/";
                 }
 
+				//force https for /login
+				if(toState.originalPath=="/login") {
+					$window.location.href = $window.location.href.replace("http://", "https://");
+				}
+				
                 $rootScope.model = AccessControl.get({route: toState.originalPath}, function(model) {
                     if(!model.access) {
                         event.preventDefault();

@@ -60,6 +60,10 @@ class Criteria
     {
         $this->limit = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/', '', $limit);
     }
+	
+	public function getQuery() {
+		return "SELECT $this->select FROM TABLE_NAME $this->join $this->condition $this->order $this->group;";
+	}
 
     /**
      * Add param to params array

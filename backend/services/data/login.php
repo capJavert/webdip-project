@@ -24,10 +24,13 @@ if(Router::getParam("user") && Router::getParam("pass")) {
         $model->save();
 
         $_SESSION['user'] = array(
+			"id" => $model->id,
             "token" => $model->auth_key,
             "username" => $model->username,
             "loginTime" => Helpers::time()
         );
+		
+		setcookie("user", json_encode($_SESSION['user']), time() + (86400 * 7), "/");
 
         $user = $model;
     }

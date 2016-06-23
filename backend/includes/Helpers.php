@@ -1,5 +1,8 @@
 <?php
 
+require_once(__DIR__."/../models/Log.php");
+require_once(__DIR__."/../models/Time.php");
+
 /**
  * Class Helpers
  */
@@ -22,8 +25,17 @@ class Helpers
     }
 
     public static function time() {
-        $adjust = 0;
+        $time = Time::model()->findOne(1);
 
-        return $adjust+time();
+        return $time->adjust+time();
+    }
+	
+
+	public static function log($action, $id) {
+        $log = new Log();
+		$log->action = $action;
+		$log->user_id = $id;
+		
+		$log->save();
     }
 }

@@ -90,8 +90,10 @@ class Service
      */
     public function getData($json = false) {
         $modelName = $this->model;
+		Helpers::log("GET_DATA .$modelName", (isset($_SESSION['user']) ? $_SESSION['user']['id']:0));
 
         if(new Criteria()!=$this->criteria) {
+			//Helpers::log("QUERY .$this->criteria->getQuery()");
             $data = $modelName::model()->findAll($this->criteria);
         } else {
             $data = $modelName::model()->findAll();
@@ -115,6 +117,7 @@ class Service
      */
     public function getForm($json = false, $files = null) {
         $modelName = $this->model;
+		Helpers::log("GET_FORM .$modelName", (isset($_SESSION['user']) ? $_SESSION['user']['id']:0));
 
         if($files) {
             $form = $modelName::formData($files);
