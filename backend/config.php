@@ -9,6 +9,7 @@ return array(
         "/login" => 0,
         "/registration" => 0,
         "/" => 0,
+        "" => 0,
         "/error/404" => 0
     ),
     "db" => array(

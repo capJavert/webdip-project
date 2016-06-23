@@ -10,7 +10,16 @@ class Criteria
     public $condition;
     public $params = array();
     public $order;
+    public $group;
     public $limit;
+
+    /**
+     * @param mixed $group
+     */
+    public function setGroup($group)
+    {
+        $this->group = "GROUP BY ". preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/', '', $group);
+    }
 
     /**
      * @param mixed $select

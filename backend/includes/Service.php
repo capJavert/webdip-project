@@ -67,6 +67,8 @@ class Service
                     break;
                 case 'order': $this->criteria->setOrder($value);
                     break;
+                case 'group': $this->criteria->setGroup($value);
+                    break;
                 case 'limit': $this->criteria->setLimit($value);
                     break;
                 case 'params':
@@ -106,6 +108,11 @@ class Service
         return $json ? json_encode($data):$data;
     }
 
+    /**
+     * @param bool $json
+     * @param array|ActiveRecord $files
+     * @return string
+     */
     public function getForm($json = false, $files = null) {
         $modelName = $this->model;
 

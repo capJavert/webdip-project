@@ -41,11 +41,11 @@ run(['$window', '$rootScope', 'User', 'AccessControl',
     function main($window, $rootScope, User, AccessControl) {
         $rootScope.$on('$routeChangeStart',
             function(event, toState, toParams, fromState, fromParams){
-                if(typeof toState.originalPath==="undefined") {
-                    toState.originalPath = "/home";
+                if(typeof toState.originalPath=="") {
+                    toState.originalPath = "/";
                 }
 
-                AccessControl.get({route: toState.originalPath}, function(model) {
+                /*AccessControl.get({route: toState.originalPath}, function(model) {
                     if(!model.access) {
                         event.preventDefault();
 
@@ -57,7 +57,7 @@ run(['$window', '$rootScope', 'User', 'AccessControl',
                             $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/login";
                         }
                     }
-                });
+                });*/
             });
     }
 ]);

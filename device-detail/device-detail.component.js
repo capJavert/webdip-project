@@ -12,7 +12,9 @@ component('deviceDetail', {
             self.model = Device.get({condition: 'GET_BY_ID', params: {id: $routeParams.dId}}, function(model) {
                 //got data
                 self.modelExtended = DeviceExtended.get({condition: 'GET_BY_PROP', params: {SPECprop: "device_id", value: $routeParams.dId}}, function(model) {
-                    //got data
+                    if(!model.device_id) {
+                        self.modelExtended = false;
+                    }
                 });
             });
 

@@ -1,36 +1,42 @@
-<div class="navigation-index">
-    <h1>{{$ctrl.modelsName}}</h1>
-    <p>
-        <a href="/WebDiP/2015_projekti/WebDiP2015x005/#/crud/{{$ctrl.type}}/new" class="btn btn-success">Dodaj unos</a>
-    </p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="navigation-index">
+                <h1>{{$ctrl.modelsName}}</h1>
+                <p>
+                    <a href="/WebDiP/2015_projekti/WebDiP2015x005/#/crud/{{$ctrl.type}}/new" class="btn btn-success">Dodaj unos</a>
+                </p>
 
-    <div class="grid-view" id="w0">
-        <table class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Naziv</th>
-                <th>Datum</th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-            <tbody>
-                <tr ng-repeat="(key, model) in $ctrl.models" data-key="9">
-                    <td>{{model.id}}</td>
-                    <td ng-if="model.name===undefined">{{$ctrl.modelsName}} #{{model.id}}</td>
-                    <td ng-if="model.name!==undefined">{{model.name}}</td>
-                    <td ng-if="model.date_added===undefined">/</td>
-                    <td ng-if="model.date_added!==undefined">{{model.date_added}}</td>
-                    <td>
-                        <a data-pjax="0" aria-label="Uredi" title="Uredi" href="/WebDiP/2015_projekti/WebDiP2015x005/#/crud/{{$ctrl.type}}/{{model.id}}">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                        </a>
-                        <a ng-click="delete($ctrl.modelsName, model.id)" data-pjax="0" data-method="post" data-confirm="Are you sure you want to delete this item?" aria-label="Obrisati" title="Obrisati" href="#delete">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                <div class="grid-view" id="w0">
+                    <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Naziv</th>
+                            <th>Datum</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            <tr ng-repeat="(key, model) in $ctrl.models" data-key="9">
+                                <td>{{model.id}}</td>
+                                <td ng-if="model.name===undefined">{{$ctrl.modelsName}} #{{model.id}}</td>
+                                <td ng-if="model.name!==undefined">{{model.name}}</td>
+                                <td ng-if="model.date_added===undefined">/</td>
+                                <td ng-if="model.date_added!==undefined">{{model.date_added}}</td>
+                                <td>
+                                    <a data-pjax="0" aria-label="Uredi" title="Uredi" href="/WebDiP/2015_projekti/WebDiP2015x005/#/crud/{{$ctrl.type}}/{{model.id}}">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <a ng-click="delete($ctrl.modelsName, model.id)" data-pjax="0" data-method="post" data-confirm="Are you sure you want to delete this item?" aria-label="Obrisati" title="Obrisati" href="#delete">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
