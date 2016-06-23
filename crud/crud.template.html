@@ -6,8 +6,6 @@
                 <label class="col-sm-2 control-label">{{field.label}}</label>
                 <div class="col-sm-6">
                     <input type="{{ field.type }}" dynamic-name="{{key}}" id="{{key}}" data-ng-model="field.value"  class="form-control" required/>
-                    <!--<span ng-show="crudForm.{{key}}.$dirty && crudForm.{{key}}.$error.required">Required!</span>.-->
-                    <span  data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
                 </div>
             </div>
 
@@ -16,8 +14,6 @@
                 <label class="col-sm-2 control-label">{{field.label}}</label>
                 <div class="col-sm-6">
                     <input type="{{ field.type }}" dynamic-name="{{key}}" data-ng-model="field.value" class="form-control" required/>
-                    <span data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
-                    <span data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.email'}}">Not email!</span>
                 </div>
             </div>
 
@@ -26,18 +22,14 @@
                 <label class="col-sm-2 control-label">{{field.label}}</label>
                 <div class="col-sm-6">
                     <input type="{{ field.type }}" dynamic-name="{{key}}" data-ng-model="field.value" ng-minlength={{field.min}} ng-maxlength={{field.max}} class="form-control" required/>
-                    <span data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
-                    <span data-ng-show=" {{'!form.'+key+'.required && (form.'+key+'.$error.minlength || form.'+key+'.$error.maxlength)' }}">Passwords must be between 8 and 20 characters.</span>
                 </div>
             </div>
 
-            <!-- TEXT FIELDS -->
+            <!-- DATE FIELDS -->
             <div ng-if="field.type=='date'" class="form-group">
                 <label class="col-sm-2 control-label">{{field.label}}</label>
                 <div class="col-sm-6">
-                    <input type="text" dynamic-name="{{key}}" id="{{key}}" data-ng-model="field.value"  class="form-control" required/>
-                    <!--<span ng-show="crudForm.{{key}}.$dirty && crudForm.{{key}}.$error.required">Required!</span>.-->
-                    <span  data-ng-show=" {{'form.'+key+'.$dirty && form.'+key+'.$error.required'}}">Required!</span>
+                    <input data-ng-model="field.value" onchange="angular.element(this).scope().loadToModel(this)" type="text" dynamic-name="{{key}}" id="{{key}}" class="form-control" required/>
                 </div>
             </div>
 

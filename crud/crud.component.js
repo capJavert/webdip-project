@@ -142,6 +142,15 @@ angular.
                     });
                 };
 
+                $scope.loadToModel = function (input) {
+                    //console.log(input.id);
+                    var myDate = input.value;
+                    myDate = myDate.split(".");
+                    var newDate = myDate[1]+"/"+myDate[0]+"/"+myDate[2];
+                    self.model[input.id] = new Date(newDate).getTime()/1000;
+                    console.log(self.model.date_release);
+                };
+
                 $scope.onFileLoad = function (input) {
                     $scope.file = input.files;
 

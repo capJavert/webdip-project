@@ -108,6 +108,21 @@ h1 {
     font-weight: bold;
 }
 
+.specs > li {
+    margin-right: 20px;
+}
+
+dt {
+    width: 100%;
+    text-align: right;
+    float: right;
+    margin-right: 20px;
+    background: #ddd;
+}
+
+dd {
+    clear: both;
+}
 
 /*FIXES*/
 .clearfix:before,
