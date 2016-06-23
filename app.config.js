@@ -39,13 +39,14 @@ config(['$routeProvider', '$locationProvider',
 ]).
 run(['$window', '$rootScope', 'User', 'AccessControl',
     function main($window, $rootScope, User, AccessControl) {
+        var self = this;
         $rootScope.$on('$routeChangeStart',
             function(event, toState, toParams, fromState, fromParams){
                 if(typeof toState.originalPath=="") {
                     toState.originalPath = "/";
                 }
 
-                /*AccessControl.get({route: toState.originalPath}, function(model) {
+                $rootScope.model = AccessControl.get({route: toState.originalPath}, function(model) {
                     if(!model.access) {
                         event.preventDefault();
 
@@ -57,7 +58,27 @@ run(['$window', '$rootScope', 'User', 'AccessControl',
                             $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/login";
                         }
                     }
-                });*/
+
+                    $rootScope.baseUrl = "/WebDiP/2015_projekti/WebDiP2015x005/";
+                    $rootScope.navbar = {};
+
+                    if(model.control>=0) {
+                        $rootScope.navbar.home = {url: $rootScope.baseUrl, value: "Naslovna"};
+                        $rootScope.navbar.devices = {url: $rootScope.baseUrl+"#/devices", value: "Uređaji"};
+                        $rootScope.navbar.categories = {url: $rootScope.baseUrl+"#/categories", value: "Kategorije"};
+                    }
+
+                    if(model.control>=1) {
+
+                    }
+
+                    if(model.control>=2) {
+                    }
+
+                    if(model.control>=3) {
+
+                    }
             });
+        });
     }
 ]);

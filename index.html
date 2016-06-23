@@ -54,7 +54,34 @@
     <script src="registration/registration.component.js"></script>
 </head>
 <body>
-    <div class="view-container">
+    <nav role="navigation" class="navbar-inverse navbar-fixed-top navbar" id="w0">
+        <div class="container">
+            <div class="navbar-header">
+                <button data-target="#w0-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/admin" class="navbar-brand">PhoneAPP</a>
+            </div>
+            <div class="collapse navbar-collapse" id="w0-collapse">
+                <ul class="navbar-nav navbar-right nav" id="w1">
+                    <li ng-repeat="nav in navbar">
+                        <a href="{{nav.url}}">{{nav.value}}</a>
+                    </li>
+                    <li ng-if="!model.logged">
+                        <a href="{{baseUrl}}#/login">Prijava</a>
+                    </li>
+                    <li ng-if="model.logged">
+                        <a href="{{baseUrl}}backend/services/data/logout.php">Odjava</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div style="margin-top: 57px;" class="view-container">
+        <div style="margin-bottom: 20px;" class="clearfix"></div>
         <div ng-view class="view-frame"></div>
     </div>
 </body>

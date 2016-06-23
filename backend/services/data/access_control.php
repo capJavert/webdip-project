@@ -16,7 +16,8 @@ if($user->id) {
 
 $access = array(
     "access" => false,
-    "logged" => $logged
+    "logged" => $logged,
+    "control" => $user->role_id
 );
 
 $route = Router::getParam("route");
@@ -25,7 +26,8 @@ if(array_key_exists($route, $config['routes'])) {
     if(AccessControl::check($config['routes'][$route], $user->role_id)) {
         $access = array(
             "access" => true,
-            "logged" => $logged
+            "logged" => $logged,
+            "control" => $user->role_id
         );
     }
 }

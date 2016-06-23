@@ -1,0 +1,81 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="phone-images">
+                <img ng-if="$ctrl.noImages" ng-src="images/no-image.png" class="phone"
+                     ng-class="selected" />
+                <img ng-if="!$ctrl.noImages" ng-src="uploads/{{img.name}}" class="phone"
+                    ng-class="{selected: img === $ctrl.mainImageUrl}"
+                    ng-repeat="img in $ctrl.images" />
+            </div>
+
+            <h1>{{$ctrl.model.name}}</h1>
+
+            <p ng-if="$ctrl.noImages">Nema slika za ovaj uređaj</p>
+
+            <ul class="phone-thumbs">
+                <li ng-repeat="img in $ctrl.images">
+                    <img ng-src="uploads/{{img.name}}" ng-click="$ctrl.setImage(img)" alt="{{img.alt}}" />
+                </li>
+            </ul>
+
+            <h3 ng-if="!$ctrl.modelExtended">Nema detalja za ovaj uređaj</h3>
+            <ul ng-if="$ctrl.modelExtended" class="specs">
+                <li>
+                    <span>Općenito</span>
+                    <dl>
+                        <dt>Datum izlaska</dt>
+                        <dd>{{$ctrl.modelExtended.date_release*1000 | date:'dd.MM.yyyy'}}</dd>
+                        <dt>Proizvođač</dt>
+                        <dd>{{$ctrl.modelExtended.date_release}}</dd>
+                        <dt>Instalirani OS</dt>
+                        <dd>{{$ctrl.modelExtended.os}}</dd>
+                    </dl>
+                </li>
+                <li>
+                    <span>Kamere i snimanje</span>
+                    <dl>
+                        <dt>Prednja kamera</dt>
+                        <dd>{{$ctrl.modelExtended.front_camera}}</dd>
+                        <dt>Kamera</dt>
+                        <dd>{{$ctrl.modelExtended.camera}}</dd>
+                    </dl>
+                </li>
+                <li>
+                    <span>Procesori</span>
+                    <dl>
+                        <dt>CPU</dt>
+                        <dd>{{$ctrl.modelExtended.cpu}}</dd>
+                        <dt>Grafika</dt>
+                        <dd>{{$ctrl.modelExtended.graphics}}</dd>
+                    </dl>
+                </li>
+                <li>
+                    <span>Memorija</span>
+                    <dl>
+                        <dt>RAM</dt>
+                        <dd>{{$ctrl.modelExtended.ram}}</dd>
+                        <dt>Interna</dt>
+                        <dd>{{$ctrl.modelExtended.memory}}</dd>
+                        <dt>Kartica</dt>
+                        <dd ng-if="$ctrl.modelExtended.memory_cards==0">Ne</dd>
+                        <dd ng-if="$ctrl.modelExtended.memory_cards==1">Da</dd>
+                    </dl>
+                </li>
+                <li>
+                    <span>Ostalo</span>
+                    <dl>
+                        <dt>WiFi</dt>
+                        <dd ng-if="$ctrl.modelExtended.wifi==0">Ne</dd>
+                        <dd ng-if="$ctrl.modelExtended.wifi>0">Da</dd>
+                        <dt>Internet</dt>
+                        <dd>{{$ctrl.modelExtended.internet}}</dd>
+                        <dt>Dual SIM</dt>
+                        <dd ng-if="$ctrl.modelExtended.dual_sim==0">Ne</dd>
+                        <dd ng-if="$ctrl.modelExtended.dual_sim==1">Da</dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
