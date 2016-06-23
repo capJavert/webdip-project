@@ -92,11 +92,16 @@ class User extends ActiveRecord
         ));
     }
 
+    /**
+     * @var UserRole $role
+     * @return string
+     */
+
     public function role() {
         if($this->role_id) {
-            return $this->getDatabase()->get("SELECT * FROM users_roles WHERE id=:roleId;", get_class(new UserRole()), array(
-                ':roleId' => $this->role_id
-            ));
+            $role = UserRole::model()->findOne($this->role_id);
+
+            return $role->name;
         } else {
             return "Guest";
         }

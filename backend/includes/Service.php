@@ -4,6 +4,7 @@ require_once("Criteria.php");
 
 /**
  * Class Service
+ * @property Criteria $criteria
  */
 class Service
 {
@@ -24,12 +25,23 @@ class Service
     private function addConstant($constant) {
         $condition = "";
 
-        $specials = json_decode($this->options['params']);
+        if(isset($this->options['params'])) {
+            $specials = json_decode($this->options['params']);
+        }
 
         switch($constant) {
             case "GET_BY_ID": $condition = "id=:id";
                 break;
             case "GET_BY_PROP": $condition = $specials->SPECprop."=:value";
+                break;
+            case "LOGGED_IN":
+                if(isset($_SESSION['user'])) {
+                    $this->criteria->addParam("loggedId", $_SESSION['user']['id']);
+                } else {
+                    $this->criteria->addParam("loggedId", 0);
+                }
+
+                $condition = "id=:loggedId";
                 break;
         }
 
@@ -44,6 +56,8 @@ class Service
 
         foreach($this->options as $key=>$value) {
             switch($key) {
+                case 'isArray': $this->isArray = true;
+                    break;
                 case 'select': $this->criteria->setSelect($value);
                     break;
                 case 'join': $this->criteria->setJoin($value);
@@ -81,8 +95,12 @@ class Service
             $data = $modelName::model()->findAll();
         }
 
-        if(!$data && new Criteria()==$this->criteria) {
-            $data = new $modelName;
+        if(!$data) {
+            if($this->isArray) {
+                $data = array();
+            } else {
+                $data = new $modelName;
+            }
         }
 
         return $json ? json_encode($data):$data;

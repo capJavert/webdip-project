@@ -2,15 +2,13 @@
 
 return array(
     "routes" => array(
-        "/categories" => "categories.php",
-        "/devices" => "devices.php",
-        "/files" => "files.php",
-        "/logs" => "logs.php",
-        "/surveys" => "surveys.php",
-        "/users" => "users.php",
-        '/form' => "form.php",
-        '/submit' => "submit.php",
-        '/delete' => "delete.php"
+        "/devices" => 0,
+        "/devices/:dId" => 0,
+        "/crud/:modelName/:mId" => 3,
+        "/crud/:modelName" => 3,
+        "/login" => 0,
+        "/" => 0,
+        "/error/404" => 0
     ),
     "db" => array(
         "serverName" => "localhost",

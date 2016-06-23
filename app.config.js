@@ -2,8 +2,8 @@
 
 angular.
 module('phoneApp').
-config(['$locationProvider' ,'$routeProvider',
-    function config($locationProvider, $routeProvider) {
+config(['$routeProvider',
+    function config($routeProvider) {
         //$locationProvider.hashPrefix('!');
 
         $routeProvider.
@@ -22,8 +22,23 @@ config(['$locationProvider' ,'$routeProvider',
             when('/login', {
               template: '<login></login>'
             }).
+            when('/registration', {
+                template: '<registration></registration>'
+            }).
             otherwise('/error/404', {
                 template: '<error-404></error-404>'
             })
+    }
+]).
+run(['$window', '$rootScope', 'User', 'AccessControl',
+    function main($window, $rootScope, User, AccessControl) {
+        $rootScope.$on('$routeChangeStart',
+            function(event, toState, toParams, fromState, fromParams){
+                AccessControl.get({route: toState.originalPath}, function(model) {
+                    if(!model.access) {
+                        $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/login";
+                    }
+                });
+            });
     }
 ]);

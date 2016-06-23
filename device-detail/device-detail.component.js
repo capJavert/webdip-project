@@ -12,11 +12,11 @@ component('deviceDetail', {
             self.model = Device.get({condition: 'GET_BY_ID', params: {id: $routeParams.dId}}, function(model) {
                 //got data
                 self.modelExtended = DeviceExtended.get({condition: 'GET_BY_PROP', params: {SPECprop: "device_id", value: $routeParams.dId}}, function(model) {
-
+                    //got data
                 });
             });
 
-            self.images = FileList.query({condition: 'GET_BY_PROP', join: "LEFT JOIN files_devices_assigned fda ON fda.file_id=files.id", params: {SPECprop: "fda.device_id", value: $routeParams.dId}}, function(model) {
+            self.images = FileList.query({isArray: 1, condition: 'GET_BY_PROP', join: "LEFT JOIN files_devices_assigned fda ON fda.file_id=files.id", params: {SPECprop: "fda.device_id", value: $routeParams.dId}}, function(model) {
                 //got data
                 if(!model.length) {
                     self.noImages = true;

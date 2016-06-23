@@ -7,6 +7,10 @@ require_once("includes/Criteria.php");
 require_once("includes/Helpers.php");
 require_once("includes/Service.php");
 
+/**
+ * @var User $newUser
+ */
+
 $config = include("config.php");
 define("APP_ROUTE", $config['env']['basepath']);
 define("SERVER_NAME", $config['db']['serverName']);
