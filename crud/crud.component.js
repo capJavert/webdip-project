@@ -141,6 +141,38 @@ angular.
                         }
                     });
                 };
+
+                $scope.onFileLoad = function (input) {
+                    $scope.file = input.files;
+
+                    var data = new FormData();
+                    $.each($scope.file, function(key, value)
+                    {
+                        data.append(key, value);
+                    });
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/WebDiP/2015_projekti/WebDiP2015x005/backend/services/data/"+"upload.php"+"?id="+$routeParams.mId,
+                        data: data,
+                        dataType: "json",
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success: function(data)
+                        {
+                            if(data.success) {
+                                $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/crud/"+$routeParams.modelName+"/"+$routeParams.mId;
+                                //file uploaded
+                            }
+                        }
+                    });
+                };
+
+                $scope.uploadFile = function() {
+                    console.log("lala");
+
+                };
             }
         ]
     });

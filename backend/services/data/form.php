@@ -35,12 +35,10 @@ if($validModel) {
         }
 
         if($modelName=="Device") {
-            $data = $service->getForm($model->files());
+            $data = $service->getForm(false, $model->files());
         } else {
             $data = $service->getForm();
         }
-
-        var_dump($data) or die;
 
         foreach($data as $key => $field) {
             if($model->test($key)) {
@@ -49,6 +47,8 @@ if($validModel) {
                 if($key=='visible') {
                     $data[$key]['value'] = $model->$key ? true:false;
                 }
+            } else {
+                $data[$key]['value'] = null;
             }
         }
     }

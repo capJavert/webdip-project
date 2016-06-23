@@ -86,9 +86,15 @@ class Service
         return $json ? json_encode($data):$data;
     }
 
-    public function getForm($json = false) {
+    public function getForm($json = false, $files = null) {
         $modelName = $this->model;
 
-        return $json ? json_encode($modelName::formData()):$modelName::formData();
+        if($files) {
+            $form = $modelName::formData($files);
+        } else {
+            $form = $modelName::formData();
+        }
+
+        return $json ? json_encode($form):$form;
     }
 }

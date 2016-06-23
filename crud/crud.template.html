@@ -66,7 +66,7 @@
             <div ng-if="field.type=='upload'" class="form-group" >
                 <label class="col-sm-2 control-label">{{field.label}}</label>
                 <div class="col-sm-6">
-                    <input type="file" id="uploadedFile" name="uploadedFile" data-ng-model="field.value" type="checkbox" dynamic-name="{{key}}">
+                    <input onchange="angular.element(this).scope().onFileLoad(this)" data-ng-model="upload" type="file" id="uploadedFile" name="uploadedFile" type="checkbox" dynamic-name="{{key}}">
                 </div>
             </div>
 

@@ -94,9 +94,13 @@ class ActiveRecord
         if($this->id) {
             $return = array("success"=>$this->database->run($sql));
         } else {
+            $success = $this->database->run($sql);
+            $newId = $this->database->lastId();
+            $this->id = $newId;
+
             $return = array(
-                "success"=>$this->database->run($sql),
-                "id"=>$this->database->lastId()
+                "success"=>$success,
+                "id"=>$newId
             );
         }
 

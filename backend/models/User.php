@@ -17,6 +17,8 @@ class User extends ActiveRecord
     public $password;
     public $auth_key;
     public $active;
+    public $date_added;
+    public $date_updated;
     private static $table_name = "users";
 
     /**
@@ -111,5 +113,8 @@ class User extends ActiveRecord
         if(!$this->id) {
             $this->setAuthKey();
         }
+
+        $this->date_added = Helpers::time();
+        $this->date_updated = Helpers::time();
     }
 }
