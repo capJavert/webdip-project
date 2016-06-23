@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <h1>Prijava</h1>
+            <form ng-submit="submit()" id="loginForm" name="loginForm" class="login-form form-horizontal" role="form" data-type="{{$ctrl.modelName}}">
+                    <ng-form name="form">
+                        <!-- TEXT FIELDS -->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Korisničko ime</label>
+                            <div class="col-sm-6">
+                                <input type="text" dynamic-name="{{key}}" id="username" data-ng-model="$ctrl.model.username"  class="form-control" required/>
+                            </div>
+                        </div>
+                        <!-- PASSWORD FIELDS -->
+                        <div class="form-group" >
+                            <label class="col-sm-2 control-label">Lozinka</label>
+                            <div class="col-sm-6">
+                                <input type="password" dynamic-name="password" data-ng-model="$ctrl.model.password" class="form-control" required/>
+                            </div>
+                        </div>
+                    </ng-form>
+
+                <br/>
+                <button type="submit" id="submit">Prijava</button>
+            </form>
+        </div>
+    </div>
+</div>

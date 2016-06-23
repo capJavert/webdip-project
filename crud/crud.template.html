@@ -1,78 +1,86 @@
-<form ng-submit="submit()" id="crudForm" name="crudForm" class="crud-form form-horizontal" role="form" data-type="{{$ctrl.modelName}}">
-    <div ng-repeat="(key, field) in $ctrl.form">
-        <ng-form name="form">
-            <!-- TEXT FIELDS -->
-            <div ng-if="field.type=='text'" class="form-group">
-                <label class="col-sm-2 control-label">{{field.label}}</label>
-                <div class="col-sm-6">
-                    <input type="{{ field.type }}" dynamic-name="{{key}}" id="{{key}}" data-ng-model="field.value"  class="form-control" required/>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <h1>{{$ctrl.modelName}}</h1>
+
+            <form ng-submit="submit()" id="crudForm" name="crudForm" class="crud-form form-horizontal" role="form" data-type="{{$ctrl.modelName}}">
+                <div ng-repeat="(key, field) in $ctrl.form">
+                    <ng-form name="form">
+                        <!-- TEXT FIELDS -->
+                        <div ng-if="field.type=='text'" class="form-group">
+                            <label class="col-sm-2 control-label">{{field.label}}</label>
+                            <div class="col-sm-6">
+                                <input type="{{ field.type }}" dynamic-name="{{key}}" id="{{key}}" data-ng-model="field.value"  class="form-control" required/>
+                            </div>
+                        </div>
+
+                        <!-- EMAIL FIELDS -->
+                        <div ng-if="field.type=='email'" class="form-group">
+                            <label class="col-sm-2 control-label">{{field.label}}</label>
+                            <div class="col-sm-6">
+                                <input type="{{ field.type }}" dynamic-name="{{key}}" data-ng-model="field.value" class="form-control" required/>
+                            </div>
+                        </div>
+
+                        <!-- PASSWORD FIELDS -->
+                        <div ng-if="field.type=='password'" class="form-group" >
+                            <label class="col-sm-2 control-label">{{field.label}}</label>
+                            <div class="col-sm-6">
+                                <input type="{{ field.type }}" dynamic-name="{{key}}" data-ng-model="field.value" ng-minlength={{field.min}} ng-maxlength={{field.max}} class="form-control" required/>
+                            </div>
+                        </div>
+
+                        <!-- DATE FIELDS -->
+                        <div ng-if="field.type=='date'" class="form-group">
+                            <label class="col-sm-2 control-label">{{field.label}}</label>
+                            <div class="col-sm-6">
+                                <input data-ng-model="field.value" onchange="angular.element(this).scope().loadToModel(this)" type="text" dynamic-name="{{key}}" id="{{key}}" class="form-control" required/>
+                            </div>
+                        </div>
+
+                        <!-- SELECT FIELDS -->
+                        <div ng-if="field.type=='dropdown'" class="form-group" >
+                            <label class="col-sm-2 control-label">{{field.label}}</label>
+                            <div class="col-sm-6">
+                                <select data-ng-model="field.value" ng-options="key as option for (key, option) in field.data" class="form-control" required/>
+                            </div>
+                        </div>
+
+                        <!-- CHECKBOX FIELDS -->
+                        <div ng-if="field.type=='checkbox'" class="form-group" >
+                            <label class="col-sm-2 control-label">{{field.label}}</label>
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label>
+                                        <input data-ng-model="field.value" type="checkbox" id="{{key}}" dynamic-name="{{key}}" name="taskGroup">
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- UPLOAD FIELDS -->
+                        <div ng-if="field.type=='upload'" class="form-group" >
+                            <label class="col-sm-2 control-label">{{field.label}}</label>
+                            <div class="col-sm-6">
+                                <input onchange="angular.element(this).scope().onFileLoad(this)" data-ng-model="upload" type="file" id="uploadedFile" name="uploadedFile" type="checkbox" dynamic-name="{{key}}">
+                            </div>
+                        </div>
+
+                        <!-- IMAGES -->
+                        <div ng-if="field.type=='images'" class="form-group" >
+                            <ul class="phone-thumbs">
+                                <li ng-repeat="img in field.data">
+                                    <img ng-src="uploads/{{img.name}}" alt="{{img.alt}}" />
+                                </li>
+                            </ul>
+                        </div>
+                    </ng-form>
                 </div>
-            </div>
 
-            <!-- EMAIL FIELDS -->
-            <div ng-if="field.type=='email'" class="form-group">
-                <label class="col-sm-2 control-label">{{field.label}}</label>
-                <div class="col-sm-6">
-                    <input type="{{ field.type }}" dynamic-name="{{key}}" data-ng-model="field.value" class="form-control" required/>
-                </div>
-            </div>
-
-            <!-- PASSWORD FIELDS -->
-            <div ng-if="field.type=='password'" class="form-group" >
-                <label class="col-sm-2 control-label">{{field.label}}</label>
-                <div class="col-sm-6">
-                    <input type="{{ field.type }}" dynamic-name="{{key}}" data-ng-model="field.value" ng-minlength={{field.min}} ng-maxlength={{field.max}} class="form-control" required/>
-                </div>
-            </div>
-
-            <!-- DATE FIELDS -->
-            <div ng-if="field.type=='date'" class="form-group">
-                <label class="col-sm-2 control-label">{{field.label}}</label>
-                <div class="col-sm-6">
-                    <input data-ng-model="field.value" onchange="angular.element(this).scope().loadToModel(this)" type="text" dynamic-name="{{key}}" id="{{key}}" class="form-control" required/>
-                </div>
-            </div>
-
-            <!-- SELECT FIELDS -->
-            <div ng-if="field.type=='dropdown'" class="form-group" >
-                <label class="col-sm-2 control-label">{{field.label}}</label>
-                <div class="col-sm-6">
-                    <select data-ng-model="field.value" ng-options="key as option for (key, option) in field.data" class="form-control" required/>
-                </div>
-            </div>
-
-            <!-- CHECKBOX FIELDS -->
-            <div ng-if="field.type=='checkbox'" class="form-group" >
-                <label class="col-sm-2 control-label">{{field.label}}</label>
-                <div class="col-sm-6">
-                    <div class="checkbox">
-                        <label>
-                            <input data-ng-model="field.value" type="checkbox" id="{{key}}" dynamic-name="{{key}}" name="taskGroup">
-                        </label>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- UPLOAD FIELDS -->
-            <div ng-if="field.type=='upload'" class="form-group" >
-                <label class="col-sm-2 control-label">{{field.label}}</label>
-                <div class="col-sm-6">
-                    <input onchange="angular.element(this).scope().onFileLoad(this)" data-ng-model="upload" type="file" id="uploadedFile" name="uploadedFile" type="checkbox" dynamic-name="{{key}}">
-                </div>
-            </div>
-
-            <!-- IMAGES -->
-            <div ng-if="field.type=='images'" class="form-group" >
-                <ul class="phone-thumbs">
-                    <li ng-repeat="img in field.data">
-                        <img ng-src="uploads/{{img.name}}" alt="{{img.alt}}" />
-                    </li>
-                </ul>
-            </div>
-        </ng-form>
+                <br/>
+                <button type="submit" id="submit">Spremi</button>
+            </form>
+        </div>
     </div>
-
-    <br/>
-    <button type="submit" id="submit">Spremi</button>
-</form>
+</div>

@@ -86,10 +86,19 @@ class User extends ActiveRecord
         );
     }
 
-    public static function findByKey($key) {
-        return self::getDatabase()->get("SELECT * FROM users WHERE auth_key=:key;", get_class(new User()), array(
-            ':key' => $key
-        ));
+    /**
+     * @param $token
+     * @return array
+     */
+
+    public static function findByKey($token) {
+        $criteria = new Criteria();
+        $criteria->setCondition("auth_key=:token");
+        $criteria->addParam("token", $token);
+
+        $user = User::model()->findAll($criteria);
+
+        return $user;
     }
 
     /**
@@ -107,8 +116,11 @@ class User extends ActiveRecord
         }
     }
 
+    /**
+     * Generate auth token for session
+     */
     public function setAuthKey() {
-        return md5(Helpers::time().$this->get_table_name());
+        $this->auth_key = md5(Helpers::time().$this->get_table_name().$this->id.$this->username);
     }
 
     public function beforeSave()
@@ -121,5 +133,39 @@ class User extends ActiveRecord
 
         $this->date_added = Helpers::time();
         $this->date_updated = Helpers::time();
+    }
+
+    /**
+     * @param $username
+     * @param $password
+     * @return array
+     */
+
+    public static function login($username, $password) {
+        $criteria = new Criteria();
+        $criteria->setCondition("username=:username AND password=:password AND active=1");
+        $criteria->addParam("password", md5($password));
+        $criteria->addParam("username", $username);
+
+        $user = User::model()->findAll($criteria);
+
+        return $user;
+    }
+
+    /**
+     * Send activation email
+     */
+    public function sendEmail() {
+        $to = $this->email;
+        $subject = "Potvrda registracije";
+
+        $message = 'Token za aktivaciju računa: <a href="https://barka.foi.hr/WebDiP/2015_projekti/WebDiP2015x005/backend/services/data/activation.php?token='.$this->auth_key.'">kliknite ovdje</a>';
+
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        $headers .= 'From: <projekt@foi.hr>' . "\r\n";
+
+        mail($to,$subject,$message,$headers);
     }
 }

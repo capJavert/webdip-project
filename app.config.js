@@ -36,7 +36,14 @@ run(['$window', '$rootScope', 'User', 'AccessControl',
             function(event, toState, toParams, fromState, fromParams){
                 AccessControl.get({route: toState.originalPath}, function(model) {
                     if(!model.access) {
-                        $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/login";
+                        event.preventDefault();
+
+                        if(model.logged) {
+                            alert("Nemate pravo pristup ovoj stranici. Obratite se Adminu za pomoć.");
+                            $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/devices";
+                        } else {
+                            $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/login";
+                        }
                     }
                 });
             });

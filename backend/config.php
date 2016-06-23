@@ -7,6 +7,7 @@ return array(
         "/crud/:modelName/:mId" => 3,
         "/crud/:modelName" => 3,
         "/login" => 0,
+        "/registration" => 0,
         "/" => 0,
         "/error/404" => 0
     ),

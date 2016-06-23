@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <h1>Registracija</h1>
+
+            <form ng-submit="submit()" id="regForm" name="regForm" class="reg-form form-horizontal" role="form" data-type="{{$ctrl.modelName}}">
+                <div ng-repeat="(key, field) in $ctrl.form">
+                    <ng-form name="form">
+                        <!-- TEXT FIELDS -->
+                        <div ng-if="field.type=='text'" class="form-group">
+                            <label class="col-sm-2 control-label">{{field.label}}</label>
+                            <div class="col-sm-6">
+                                <input type="{{ field.type }}" dynamic-name="{{key}}" id="{{key}}" data-ng-model="field.value"  class="form-control" required/>
+                            </div>
+                        </div>
+
+                        <!-- EMAIL FIELDS -->
+                        <div ng-if="field.type=='email'" class="form-group">
+                            <label class="col-sm-2 control-label">{{field.label}}</label>
+                            <div class="col-sm-6">
+                                <input type="{{ field.type }}" dynamic-name="{{key}}" data-ng-model="field.value" class="form-control" required/>
+                            </div>
+                        </div>
+
+                        <!-- PASSWORD FIELDS -->
+                        <div ng-if="field.type=='password'" class="form-group" >
+                            <label class="col-sm-2 control-label">{{field.label}}</label>
+                            <div class="col-sm-6">
+                                <input type="{{ field.type }}" dynamic-name="{{key}}" data-ng-model="field.value" ng-minlength={{field.min}} ng-maxlength={{field.max}} class="form-control" required/>
+                            </div>
+                        </div>
+                    </ng-form>
+                </div>
+
+                <br/>
+                <button type="submit" id="submit">Registriraj se</button>
+            </form>
+        </div>
+    </div>
+</div>
