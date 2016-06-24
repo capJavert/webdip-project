@@ -18,7 +18,7 @@ class Survey extends ActiveRecord
     public $visible = -1;
     public $date_start;
     public $date_end;
-    public $date_visible;
+    public $data_visible;
     private static $table_name = "surveys";
 
     /**
@@ -80,9 +80,9 @@ class Survey extends ActiveRecord
                 'type' => 'date',
                 'label' => 'Datum do'
             ),
-            'date_visible' => array(
-                'type' => 'date',
-                'label' => 'Datum vidljivosti'
+            'data_visible' => array(
+                'type' => 'checkbox',
+                'label' => 'Prikaži podatke'
             ),
         );
     }

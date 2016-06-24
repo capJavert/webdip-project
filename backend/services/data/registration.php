@@ -26,6 +26,7 @@ foreach($newModel as $key => $property) {
 //$user->active = 1; //user active without email TODO test
 $model->role_id = 1;
 $model->password = md5($model->password);
+$model->date_email_expire = Helpers::time()+3600*24;
 
 $criteria = new Criteria();
 $criteria->setCondition("username=:username OR email=:email");
@@ -33,13 +34,13 @@ $criteria->addParam("username", $model->username);
 $criteria->addParam("email", $model->email);
 
 if(User::model()->findAll($criteria)) {
-    $saved = array("success"=>false);
+    $saved = array("success"=>false, "error"=>true);
 } else {
     $saved = $model->save();
 
     if($saved['success']) {
-        $user->setAuthKey();
-        $user->sendEmail();
+        //$model->setAuthKey();
+        $model->sendEmail();
     }
 
 }

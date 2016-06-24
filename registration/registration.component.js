@@ -27,6 +27,10 @@ component('registration', {
                             if(data.success) {
                                 alert("Registracija uspješna! Provjerite svoj email za aktivaciju računa.");
                                 $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/devices";
+                            } else {
+                                if(data.error) {
+                                    alert("Korisničko ime ili email su zauzeti!");
+                                }
                             }
                         }
                     });

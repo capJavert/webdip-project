@@ -1,0 +1,165 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <style>
+                .col-md-6 > p, .col-md-6 > ul {font-size: 18px}
+                h1,h2,h3,h4,h5,h6 {
+                    font-weight: bolder;
+                }
+                h2 {
+                    text-decoration: underline;
+                    margin-bottom: 20px;
+                }
+
+                .col-md-6 li, p {
+                    margin: 15px 0;
+                }
+
+                .col-md-6 p {
+                    line-height: 28px;
+                }
+
+                img {
+                    width: 100%;
+                    margin: 20px;
+                }
+            </style>
+
+            <h1>Dokumentacija</h1>
+
+            <h2>Uvod</h2>
+            <p>
+                <b>PhoneAPP</b> je aplikacija koja služi za pregledavanje mobilnih uređaja,
+                pretraživanje, sortiranje istih. Aplikacija se bazira na posebno
+                izrađenom API servisu koji <b></b>je namjenjen kako bi što bolje komunicirao
+                s Angular frameworkom u pozadini, ali nešto više o tome kasnije.
+            </p>
+
+            <h2>Tehnologije</h2>
+            <ul>
+                <li>CSS</li>
+                <li>HTML 5</li>
+                <li>Angular</li>
+                <li>jQuery UI</li>
+                <li>jQuery</li>
+                <li>Ajax</li>
+                <li>PHP</li>
+                <li>PDO Klasa</li>
+                <li>Angular template engine</li>
+                <li>Bower</li>
+                <li>Node</li>
+                <li>Model based podatci</li>
+            </ul>
+
+            <h2>Backend dio</h2>
+
+            <h4>Includes</h4>
+
+            <ul>
+                <li><b>AccessControl</b> - klasa za provjeru pristupa nekoj stranici</li>
+                <li><b>Criteria</b> - klasa koja služi za stvaranje upita nad bazom, serijalizira parametre
+                i preventira SQL injection, JSON se koristi za prijenos preko GET parametra. Klasa ima implementirane
+                metode za prihvat condition, select, limit, group, join upita i to sve preko parametriziranih
+                upita.</li>
+                <li><b>Helpers</b> - Klasa sadrži pomocne metode, kao što su time() za virtualno vrijeme te
+                ostale koje se često koriste</li>
+                <li><b>Router</b> - Klasa koja služi kao sučelje parametrima iz URL-a i http headera.
+                Mogli bi reći kao malo sigurniji $_GET. Sadrži statičke metode za pristup parametrima
+                i izvođenju operacija nad URI-em</li>
+                <li><b>Service</b> - Bazna klasa za sve servise koji se pozivaju iz frontend dijela, a vuku podatke
+                iz baze, klasa koristi Criteria i Router klase za pretvaranje parametara u upite koji
+                se onda koriste za dohvačanje bilo kojeg podatka iz baze.</li>
+            </ul>
+            <p>
+
+            </p>
+
+            <h4>Models</h4>
+
+            <ul>
+                <li><b>Database</b> - klasa proširuje PDO klasu PHP-a i služi za izvršavanje svih upita
+                nad bazom. Parametre dobiva preko servisa i upita pripremljenih sa Criteria klasom</li>
+                <li><b>ActiveRecord</b> - Svi ostali modeli koji imena imaju po tablicama u bazi extendaju ovu
+                klasu. Ona sadrži bazne metode za CRUD operacije, tj. spremanje, brisanje itd. Isto tako
+                sadrži staticki element formData koji se preko servisa koristi za stvaranje i dinamičko
+                generiranje CRUD formi u frontendu.</li>
+                <li><b>Model</b> - pomocna klasa. Svaka klasa tipa ActivaRecord ima staticku instancu ove
+                klase. Služi za dinamičko dohvacanje Podataka, a bazira se na MVC arhitekturi. Osnovne metode su
+                findeOne, tj. po PK i druga findAll koja prima argument tipa Criteria</li>
+                <li><b>Device</b> - izdvajam ovu klasu jer ona koristi i datoteke koje se vežu za nju, tj.
+                slike mobilnog uređaja.</li>
+                <li><b>User</b> - klasa koja uz klasu UserRole zajedno s AccessControl klasom služi za
+                menađiranje pristupa raznim djelovima aplikacije.</li>
+            </ul>
+            <p>
+
+            </p>
+
+            <h4>Protected</h4>
+
+            <p>
+                Folder je zašticen .htaccess datotekom te se unutar njega nalazi servis koji ispisuje sve korisnike.
+            </p>
+
+            <h4>Services - Data</h4>
+
+            <p>
+                Unutar ovog foldera se nalati sva magija oko servisa. Naime u frontend dijelu kreirao sam Angularove
+                servise koji se onda pozivaju na ove u backend-u. Svaka datoteka inicijalzira objekt tipa Service i
+                nakon toga pomocu ostalih klasa koje sam opisao gore procesira upite i vraca nazad json formatirani
+                string koji se u frontendu koristi za prikaz i generiranje podataka.
+            </p>
+
+            <h4>Bazne datoteke backend</h4>
+
+            <ul>
+                <li>header.php - ova datoteka se brine da sve potrebne datoteke i klase budu učitane kod svakog poziva API-a</li>
+                <li>config.php - razne postavke aplikacije, te rute i pravila pristupa koje odgovaraju onima
+                u configu frontend dijela.</li>
+            </ul>
+
+            <h2>Frontend dio</h2>
+
+            <h4>Modularni pristup</h4>
+
+            <p>Htio sam kroz ovu aplikaciju složiti modularnu arhitekturu koja bi bila lako prenosljiva. Zato
+            su više manje svi view-i u različitim modulima i komponentama koje žive same za sebe.
+            Ovakav pristup dakako uzima više vremena i zato me to u jednu ruku koštalo završavanja funkcionalnosti
+            kao što su statitstike i slično. </p>
+
+            <h4>Modul servisa (Core)</h4>
+
+            <p>Unutar core/services mape se nalazi services modul kojeg ekstendaju sve service komponente unutar istoga.
+            Svaka komponenta ima dvije metode. Get i Query. Razlika je u tome da Query metoda ocekuje kao odgovor
+            array, dok Get želi object što je u početku bilo malo zbunjujuce za pohvatati. Kroz GET parametre servisi šalju
+            parametre zahtjeva za pozadinske upite. Ti upiti se tada pretvaraju kroz Service objekt u formatirani upit
+            kakav prima moj API, a to je Criteria objekt. Nakon toga se poziva metoda findAil s tim argumentom.</p>
+
+            <h4>Ostali view moduli</h4>
+
+            <ul>
+                <li><b>login</b> - služi za prijavu i prikaz forme. Forma se naravno dinamički submita.</li>
+                <li><b>registration</b> - ista stvar koristi se za registraciju novog korisnika</li>
+                <li><b>device-list</b> - Prikaz, ispis, pretraživanje uređaja.</li>
+                <li><b>device-list</b> - Detaljni prikaz mobitela uz galeriju slika.</li>
+            </ul>
+
+            <h4>Bazne datoteke frontend</h4>
+
+            <ul>
+                <li>index.html - koristi se kao početna datoteka, u njoj su inlcude-ane sve komponente i
+                pripadajuci moduli koji su potrebni u aplikaciji.</li>
+                <li>app.animations - ova datoteka je trebala biti malo veća, ali za sada se koristi samo
+                za animiranje kod prelgeda galerije slika mobitela</li>
+                <li>app.config - ovdje se definiraju globalni $rootScope parametri. Ovdje isto tako kod
+                svakog pokretanaj aplikaciji i kod svake promjene rute se provjerava u API-u da li je korisnik prijvaljen
+                i da li ima pristup nekoj stranici.</li>
+                <li>app.module - bazni modul aplikacije</li>
+            </ul>
+
+            <h2>Dijagrami</h2>
+            <a target="_blank" href="images/era.png"><img src="images/era.png" /></a><br /><br />
+            <a target="_blank" href="images/navigacijski.png"><img src="images/navigacijski.png" /></a><br /><br />
+        </div>
+    </div>
+</div>

@@ -42,7 +42,7 @@
                         <div ng-if="field.type=='dropdown'" class="form-group" >
                             <label class="col-sm-2 control-label">{{field.label}}</label>
                             <div class="col-sm-6">
-                                <select data-ng-model="field.value" ng-options="key as option for (key, option) in field.data" class="form-control" required/>
+                                <select ng-model="field.value" ng-options="option.id as option.name for option in field.data" class="form-control"/>
                             </div>
                         </div>
 

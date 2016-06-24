@@ -123,7 +123,7 @@ component('crudList', {
                         //saved
                     }
                 });
-            }
+            };
         }
     ]
 });

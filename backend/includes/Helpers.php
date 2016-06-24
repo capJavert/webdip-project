@@ -18,7 +18,7 @@ class Helpers
         $dropdown = array();
 
         foreach($array as $e) {
-            $dropdown[$e->$key] = $e->$value;
+            $dropdown[] = array("id"=>$e->$key, "name"=>$e->$value);
         }
 
         return $dropdown;

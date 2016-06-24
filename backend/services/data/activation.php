@@ -12,20 +12,13 @@ if(Router::getParam("token")) {
     $model = User::findByKey(Router::getParam("token"));
 
     if($model) {
-        if($model->active==0) {
+        var_dump()
+        if($model->active==0 && Helpers::time()<$model->date_email_expire) {
             $model->setAuthKey();
             $model->active = 1;
             $model->save();
 
-            $_SESSION['user'] = array(
-                "token" => $model->auth_key,
-                "username" => $model->username,
-                "loginTime" => Helpers::time()
-            );
-
-            $user = $model;
-
-            header("Location: /WebDiP/2015_projekti/WebDiP2015x005/#/devices");
+            header("Location: /WebDiP/2015_projekti/WebDiP2015x005/#/login");
         }
     }
 }

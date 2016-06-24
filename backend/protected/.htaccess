@@ -1,0 +1,5 @@
+AuthUserFile /var/www/WebDiP/2015_projekti/WebDiP2015x005/backend/protected/.htpasswd
+AuthName "Greatness Awaits"
+AuthType Basic
+
+require valid-user

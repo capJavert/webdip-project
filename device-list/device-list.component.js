@@ -9,8 +9,6 @@ component('deviceList', {
             function DeviceListController($rootScope, $scope, $window, $routeParams, DeviceList, CategoryList, AccessControl) {
                 var self = this;
 
-                console.log($rootScope.model.logged);
-
                 self.user = AccessControl.get({route: "/devices"}, function(model) {
                 });
 
@@ -18,7 +16,7 @@ component('deviceList', {
                     //got data
                 });
 
-                self.categories = CategoryList.query({select: 'categories.*, cl.id AS liked', join: "LEFT JOIN categories_likes cl ON cl.category_id=categories.id", group: "categories.id"}, function() {
+                self.categories = CategoryList.query(null, function() {
                     //got data
                 });
 

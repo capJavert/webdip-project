@@ -19,6 +19,7 @@ class User extends ActiveRecord
     public $active;
     public $date_added;
     public $date_updated;
+    public $date_email_expire;
     private static $table_name = "users";
 
     /**
@@ -82,6 +83,10 @@ class User extends ActiveRecord
             'active' => array(
                 'type' => 'checkbox',
                 'label' => 'Aktiviran'
+            ),
+            'date_email_expire' => array(
+                'type' => 'date',
+                'label' => 'Istek aktivacije'
             )
         );
     }
@@ -159,7 +164,7 @@ class User extends ActiveRecord
         $to = $this->email;
         $subject = "Potvrda registracije";
 
-        $message = 'Token za aktivaciju računa: <a href="https://barka.foi.hr/WebDiP/2015_projekti/WebDiP2015x005/backend/services/data/activation.php?token='.$this->auth_key.'">kliknite ovdje</a>';
+        $message = 'Token za aktivaciju računa: https://barka.foi.hr/WebDiP/2015_projekti/WebDiP2015x005/backend/services/data/activation.php?token='.$this->auth_key;
 
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";

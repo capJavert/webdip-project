@@ -51,6 +51,7 @@ class Service
 
                 $condition = "id=:loggedId";
                 break;
+            case "GET_BY_SURVEY": $condition = "survey_id=:id";
         }
 
         return $condition;

@@ -32,7 +32,16 @@ if(isset($_SESSION['user'])) {
     $newUser = User::findByKey($_SESSION['user']['token']);
 
     if($newUser) {
-        $user = $newUser;
+        if($newUser->active) {
+            $user = $newUser;
+        } else {
+            session_destroy();
+
+            if(isset($_COOKIE['user'])) {
+                unset($_COOKIE['user']);
+                setcookie('user', null, -1, '/');
+            }
+        }
     }
 }
 

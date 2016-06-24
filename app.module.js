@@ -9,5 +9,7 @@ angular.module('phoneApp', [
     'deviceList',
     'crud',
     'login',
-    'registration'
+    'registration',
+    'survey',
+    'about'
 ]);

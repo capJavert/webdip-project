@@ -29,10 +29,16 @@ config(['$routeProvider', '$locationProvider',
             when('/registration', {
                 template: '<registration></registration>'
             }).
+            when("/about", {
+                template: '<about></about>'
+            }).
+            when("/docs", {
+                template: '<docs></docs>'
+            }).
             when("/", {
                 template: '<device-list></device-list>'
             }).
-            otherwise('/error/404', {
+                otherwise('/error/404', {
                 template: '<error-404></error-404>'
             })
     }
@@ -47,13 +53,18 @@ run(['$window', '$rootScope', 'User', 'AccessControl',
 					$window.location.href = $window.location.href.replace("http://", "https://");
 				}
 
+                console.log(toState.originalPath);
+
                 $rootScope.model = AccessControl.get({route: toState.originalPath}, function(model) {
                     $rootScope.baseUrl = "/WebDiP/2015_projekti/WebDiP2015x005/";
+                    $rootScope.time = model.time;
                     $rootScope.navbar = {};
 
                     if(model.control>=0) {
                         $rootScope.navbar.home = {url: $rootScope.baseUrl, value: "Naslovna"};
                         $rootScope.navbar.devices = {url: $rootScope.baseUrl+"#/devices", value: "Uređaji"};
+                        $rootScope.navbar.about = {url: $rootScope.baseUrl+"#/about", value: "O autoru"};
+                        $rootScope.navbar.docs = {url: $rootScope.baseUrl+"#/docs", value: "Dokumentacija"};
                     }
 
                     if(model.control>=1) {

@@ -4,8 +4,8 @@
     <base href="/WebDiP/2015_projekti/WebDiP2015x005/">
     <meta charset="utf-8">
     <title>PhoneAPP</title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css">
+    <link rel="stylesheet" href="bower_components/css/d.css" />
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="app.animations.css" />
 
@@ -20,10 +20,10 @@
     <script src="app.config.js"></script>
     <script src="app.animations.js"></script>
     <script src="core/core.module.js"></script>
-    <script src="core/checkmark/checkmark.filter.js"></script>
     <script src="core/services/services.module.js"></script>
     <script src="core/services/devices.service.js"></script>
     <script src="core/services/categories.service.js"></script>
+
     <script src="core/services/files.service.js"></script>
     <script src="core/services/logs.service.js"></script>
     <script src="core/services/surveys.service.js"></script>
@@ -45,6 +45,11 @@
     <script src="device-list/device-list.component.js"></script>
     <script src="device-detail/device-detail.module.js"></script>
     <script src="device-detail/device-detail.component.js"></script>
+    <script src="about/about.module.js"></script>
+    <script src="about/about.component.js"></script>
+    <script src="about/docs.component.js"></script>
+    <script src="survey/survey.module.js"></script>
+    <script src="survey/survey.component.js"></script>
     <script src="crud/crud.module.js"></script>
     <script src="crud/crud.component.js"></script>
     <script src="crud/crud-list.component.js"></script>
@@ -67,11 +72,15 @@
             </div>
             <div class="collapse navbar-collapse" id="w0-collapse">
                 <ul class="navbar-nav navbar-right nav" id="w1">
+                    <li><a href="#/crud/time/1">{{time*1000 | date:'dd.MM.yyyy HH:mm'}}</a></li>
                     <li ng-repeat="nav in navbar">
                         <a href="{{nav.url}}">{{nav.value}}</a>
                     </li>
                     <li ng-if="!model.logged">
                         <a href="{{baseUrl}}#/login">Prijava</a>
+                    </li>
+                    <li ng-if="!model.logged">
+                        <a href="{{baseUrl}}#/registration">Registracija</a>
                     </li>
                     <li ng-if="model.logged">
                         <a href="{{baseUrl}}backend/services/data/logout.php">Odjava</a>

@@ -48,8 +48,12 @@ if($validModel) {
                     $data[$key]['value'] = date("d.m.Y", $model->$key);
                 }
 
-                if($key=='visible') {
+                if($data[$key]['type']=="checkbox") {
                     $data[$key]['value'] = $model->$key ? true:false;
+                }
+
+                if($data[$key]['type']=="dropdown") {
+                    $data[$key]['value'] = $model->$key;
                 }
             } else {
                 $data[$key]['value'] = null;

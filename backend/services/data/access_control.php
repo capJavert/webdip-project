@@ -27,7 +27,8 @@ if(array_key_exists($route, $config['routes'])) {
         $access = array(
             "access" => true,
             "logged" => $logged,
-            "control" => $user->role_id
+            "control" => $user->role_id,
+            "time" => Helpers::time()
         );
     }
 }

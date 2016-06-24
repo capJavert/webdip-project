@@ -10,7 +10,10 @@ return array(
         "/registration" => 0,
         "/" => 0,
         "" => 0,
-        "/error/404" => 0
+        "/error/404" => 0,
+        "/survey/:sId" => 0,
+        "/about" => 0,
+        "/docs" => 0
     ),
     "db" => array(
         "serverName" => "localhost",
