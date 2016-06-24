@@ -13,6 +13,14 @@ class Service
     public $isArray = false;
     private $criteria;
 
+    /**
+     * @return Criteria
+     */
+    public function getCriteria()
+    {
+        return $this->criteria;
+    }
+
     public function __construct($model, $options) {
         $this->model = $model;
         $this->options = $options;
@@ -93,7 +101,6 @@ class Service
 		Helpers::log("GET_DATA .$modelName", (isset($_SESSION['user']) ? $_SESSION['user']['id']:0));
 
         if(new Criteria()!=$this->criteria) {
-			//Helpers::log("QUERY .$this->criteria->getQuery()");
             $data = $modelName::model()->findAll($this->criteria);
         } else {
             $data = $modelName::model()->findAll();

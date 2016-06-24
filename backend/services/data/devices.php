@@ -7,6 +7,8 @@ $service = new Service(get_class(new Device()), Router::params());
 
 $service->prepareData();
 
+//var_dump($service->getCriteria()->getQuery()) or die;
+
 if(Router::isGetForm()) {
     $data = $service->getForm(true);
 } else {

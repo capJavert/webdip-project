@@ -51,7 +51,11 @@ class Database extends PDO
      * @return bool
      */
     public function run($sql, $params=array()) {
-        $this->statement = $this->prepare($sql);
+        try {
+            $this->statement = $this->prepare($sql);
+        }  catch (Exception $e) {
+            var_dump($sql) or die;
+        }
 
         $this->params($params);
 
@@ -67,18 +71,22 @@ class Database extends PDO
      * @return array
      */
     public function get($sql, $class, $params=array()) {
-        $this->statement = $this->prepare($sql);
+        try {
+            $this->statement = $this->prepare($sql);
+        }  catch (Exception $e) {
+            var_dump($sql) or die;
+        }
 
         $this->params($params);
-
         $this->statement->execute();
+
         $result = $this->statement->fetchAll(PDO::FETCH_CLASS, $class);
         $this->statement = null;
 
         return count($result)==1 ? $result[0]:$result;
     }
 
-    public function lastId() {		
+    public function lastId() {
         $this->statement = $this->prepare("SELECT LAST_INSERT_ID();");
 
         $this->statement->execute();

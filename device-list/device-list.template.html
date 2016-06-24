@@ -19,6 +19,18 @@
                 </select>
             </p>
 
+            <ul class="categories">
+                <h4>Kategorije</h4>
+                <li ng-repeat="category in $ctrl.categories"
+                    class="category-item">
+                    <a href="#/category/devices/{{category.id}}">{{category.name}}</a>
+                    <div ng-if="$ctrl.user.logged" class="action-bar">
+                        <div data-type="Category" data-id="{{category.id}}" onclick="angular.element(this).scope().Like(this)" ng-if="category.liked" class="like liked">Like</div>
+                        <div data-type="Category" data-id="{{category.id}}" onclick="angular.element(this).scope().Like(this)" ng-if="!category.liked" class="like">Like</div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </ul>
         </div>
         <div class="col-md-10">
             <!--Body content-->
@@ -34,6 +46,10 @@
                         <a href="#/devices/{{model.id}}">
                             <h3>{{model.name}}</h3>
                         </a>
+                    </div>
+                    <div ng-if="$ctrl.user.logged" class="action-bar">
+                        <div data-type="Device" data-id="{{model.id}}" onclick="angular.element(this).scope().Like(this)" ng-if="model.liked" class="like liked">Like</div>
+                        <div data-type="Device" data-id="{{model.id}}" onclick="angular.element(this).scope().Like(this)" ng-if="!model.liked" class="like">Like</div>
                     </div>
                     <div class="clearfix"></div>
                 </li>

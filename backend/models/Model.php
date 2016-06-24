@@ -78,7 +78,7 @@ class Model
     /**
      * Get all instances of model based on $criteria
      * @param Criteria $criteria
-     * @return array
+     * @return array|ActiveRecord
      */
     public function findAll($criteria=null) {
         if($criteria) {

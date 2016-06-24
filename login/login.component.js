@@ -5,8 +5,8 @@ angular.
 module('login').
 component('login', {
     templateUrl: 'login/login.template.html',
-        controller: ['$scope', '$window', '$routeParams', 'User',
-            function LoginController($scope, $window, $routeParams, User) {
+        controller: ['$rootScope', '$scope', '$window', '$routeParams', 'User',
+            function LoginController($rootScope, $scope, $window, $routeParams, User) {
                 var self = this;
 
                 $scope.submit = function() {
@@ -18,6 +18,7 @@ component('login', {
                         success: function(data)
                         {
                             if(data.success) {
+                                $rootScope.model.logged = true;
                                 $window.location.href = "/WebDiP/2015_projekti/WebDiP2015x005/#/devices";
                             }
                         }

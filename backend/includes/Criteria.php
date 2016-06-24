@@ -12,7 +12,7 @@ class Criteria
     public $order;
     public $group;
     public $limit;
-
+    
     /**
      * @param mixed $group
      */
@@ -26,7 +26,7 @@ class Criteria
      */
     public function setSelect($select)
     {
-        $this->select = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/', '', $select);
+        $this->select = $select;
     }
 
     /**
@@ -34,7 +34,7 @@ class Criteria
      */
     public function setJoin($join)
     {
-        $this->join = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/', '', $join);
+        $this->join = $join;
     }
 
     /**

@@ -28,8 +28,6 @@ $user = new User();
 $user->id = 0;
 $user->role_id = 0;
 
-$GLOBALS['user'] = $user;
-
 if(isset($_SESSION['user'])) {
     $newUser = User::findByKey($_SESSION['user']['token']);
 

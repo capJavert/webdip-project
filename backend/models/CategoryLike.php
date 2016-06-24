@@ -29,7 +29,7 @@ class CategoryLike extends ActiveRecord
     public function __construct()
     {
         parent::__construct();
-        $this->setTableName(User::get_table_name());
+        $this->setTableName(CategoryLike::get_table_name());
     }
 
     /**
